@@ -151,6 +151,8 @@ hr {
   display: block;
   padding: 5px 0;
   border-bottom: solid 1px var(--gray);
+  color: rgb(15, 39, 111);
+  text-decoration: solid;
 }
 
 
