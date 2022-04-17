@@ -7,9 +7,9 @@ const computadoras = {
         contra: "4871Leyla_"},
 
     products: [
-        {id: "1", title: 'Acer Aspire 5', description: 'Procesador intel core: i5', photo: '/images/produts/AcerAspire5.jpg'},
+        {id: "1", title: 'Acer Aspire 5', description: 'Procesador intel core: i5', photo: '/images/products/AcerAspire5.jpg'},
         {id: "2", title: 'Alienware 15', description: 'Procesador intel core: i5',photo: '/images/products/Alienware15.jpg'},
-        {id: "3", title: 'Asus ROG Strix', description: 'Procesador intel core: i5', photo: '/images/products/AsusROGStrix.jpg'},
+        {id: "3", title: 'Asus ROG Strix', description: 'Procesador intel core: i5', photo: '/images/products/AsusROGStix.jpg'},
         {id: "4", title: 'Dell Inspiron', description: 'Procesador intel core: i5', photo: '/images/products/DellInspiron.jpg'},
         {id: "5", title: 'HP 15', description: 'Procesador intel core: i5', photo: '/images/products/HP15.jpg'},
         {id: "6", title: 'HP Pavillion', description: 'Procesador intel core: i5', photo: '/images/products/HpPavillion.jpg'},
