@@ -7,16 +7,16 @@ const computadoras = {
         contra: "4871Leyla_"},
 
     products: [
-        {id: "1", desription: 'Acer Aspire 5', photo: '/images/produts/AcerAspire5.jpg'},
-        {id: "2", desription: 'Alienware 15', photo: '/images/products/Alienware15.jpg'},
-        {id: "3", desription: 'Asus ROG Strix', photo: '/images/products/AsusROGStrix.jpg'},
-        {id: "4", desription: 'Dell Inspiron', photo: '/images/products/DellInspiron.jpg'},
-        {id: "5", desription: 'HP 15', photo: '/images/products/HP15.jpg'},
-        {id: "6", desription: 'HP Pavillion', photo: '/images/products/HpPavillion.jpg'},
-        {id: "7",desription: 'Mackboock Pro', photo: '/images/products/macbookpro.jpg'},
-        {id: "8", desription: 'Razer Blade 15', photo: '/images/products/RazerBlade.jpg'},
-        {id: "9", desription: 'Xaomi Mi Pro', photo: '/images/products/XaomiMiPro.jpg'},
-        {id: "10", desription: 'Microsoft Surface Pro', photo: '/images/products/Microsoft.jpg'},
+        {id: "1", title: 'Acer Aspire 5', photo: '/images/produts/AcerAspire5.jpg'},
+        {id: "2", title: 'Alienware 15', photo: '/images/products/Alienware15.jpg'},
+        {id: "3", title: 'Asus ROG Strix', photo: '/images/products/AsusROGStrix.jpg'},
+        {id: "4", title: 'Dell Inspiron', photo: '/images/products/DellInspiron.jpg'},
+        {id: "5", title: 'HP 15', photo: '/images/products/HP15.jpg'},
+        {id: "6", title: 'HP Pavillion', photo: '/images/products/HpPavillion.jpg'},
+        {id: "7",title: 'Mackboock Pro', photo: '/images/products/macbookpro.jpg'},
+        {id: "8", title: 'Razer Blade 15', photo: '/images/products/RazerBlade.jpg'},
+        {id: "9", title: 'Xaomi Mi Pro', photo: '/images/products/XaomiMiPro.jpg'},
+        {id: "10", title: 'Microsoft Surface Pro', photo: '/images/products/Microsoft.jpg'},
     ],
 
     comments: [
