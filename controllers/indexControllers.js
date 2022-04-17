@@ -1,11 +1,11 @@
-const data = require('../db/data');
+const computadoras = require('../db/data');
 
 const controlador={
     index: function(req, res, next) {
-        res.render('index', { title: 'Express' });
+        res.render('index', { products: computadoras.products });
       },
     search: function (req, res, next) {
-            res.render('search-results', {title: 'Express'});
+            res.render('search-results');
         
     }
 }

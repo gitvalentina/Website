@@ -1,14 +1,14 @@
-const data = require('../db/data');
+const computadoras = require('../db/data');
 
 const controlador={
     login: function(req, res, next) {
         res.render('login');
       },
     profile: function (req, res, next) {
-            res.render('profile', {title: 'Express'});
+            res.render('profile', {user: computadoras});
     },
     profileEdit: function(req, res, next) {
-        res.render('profile-edit', { title: 'Express' });
+        res.render('profile-edit', { user: computadoras.user });
       },
     register: function (req, res, next) {
             res.render('register');
