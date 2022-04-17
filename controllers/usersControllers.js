@@ -2,7 +2,7 @@ const data = require('../db/data');
 
 const controlador={
     login: function(req, res, next) {
-        res.render('login', { title: 'Express' });
+        res.render('login');
       },
     profile: function (req, res, next) {
             res.render('profile', {title: 'Express'});
@@ -11,7 +11,7 @@ const controlador={
         res.render('profile-edit', { title: 'Express' });
       },
     register: function (req, res, next) {
-            res.render('register', {title: 'Express'});
+            res.render('register');
     },
 }
 
