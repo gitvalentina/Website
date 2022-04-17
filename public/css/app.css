@@ -1,6 +1,6 @@
 /*====== Fonts ======*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 /*====== Variables ======*/
 :root {
@@ -10,7 +10,8 @@
   --gray: #666666;
   --light-gray: #ebebeb;
   --green: #39b54a;
-  --base-font-family: 'Roboto', sans-serif
+  --base-font-family: 'Bebas Neue', cursive;
+   
 }
 
 
@@ -27,8 +28,8 @@ body {
 }
 
 body {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 300;
+  font-family: 'Bebas Neue', cursive ;
+  font-weight: 400;
   background-color: var(--light-gray);
 }
 
