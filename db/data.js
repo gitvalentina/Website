@@ -4,7 +4,8 @@ const computadoras = {
         nombreDeUsuario: " LeylaFernandez_123",
         email: "leyalfernandez@gmail.com",
         imagen: "/images/users/usuario.jpg",
-        contra: "4871Leyla_"},
+        contra: "4871Leyla_",
+        birthdate: '13/02/2001'},
 
     products: [
         {id: "1", title: 'Acer Aspire 5', description: 'Intel core i5, 32gb RAM, Nvidia gtx 1050', photo: '/images/products/AcerAspire5.jpg'},
@@ -20,11 +21,11 @@ const computadoras = {
     ],
 
     comments: [
-        {content: 'La mejor computadora disponible!', username: 'TomasGarrido10'},
-        {content: 'Gran computadora para el colegio', username: 'LolaMeyer11'},
-        {content: 'Recomiendo!', username: 'Julian_Marcos'},
-        {content: 'Funciona genial', username: 'SofiaKravi123'},
-        {content: 'Muy buena placa de video', username: 'Matias_Julian_Alvaro'}
+        {content: 'No hay notebook en el mercado con las prestaciones de ésta y a mejor precio. Es rápida y el renderizado es bueno.', username: 'TomasGarrido10'},
+        {content: 'El ángulo de visión de la pantalla no es tan amplio, pero suficiente. La batería dura por lo menos 4 horas o más, dependiendo del uso de la cpu/gpu. Eso está bien, teniendo en cuenta el tipo de cpu que trae.', username: 'LolaMeyer11'},
+        {content: 'Diez puntos, la compu viene lista para usar, y con las especificaciones pedidas. Anda bárbaro y el mismo día en que vino, ya estaba trabajando con ella. Me salvaron!', username: 'Julian_Marcos'},
+        {content: 'Muy buena relacion calidad-precio. Por este valor muy dificil encontrar las prestaciones que tiene esta maquina.', username: 'SofiaKravi123'},
+        {content: 'Excelente máquina, la probé luego de haber instalado el sistema operativo. Es un avión me tomó todos los programas rapidísimo. El material es de muy buena calidad se lo ve resistente', username: 'Matias_Julian_Alvaro'}
     ],
 }
 
