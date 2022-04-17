@@ -1,4 +1,4 @@
-const data = {
+const computadoras = {
     user: { 
         id: 1,
         nombreDeUsuario: " LeylaFernandez_123",
@@ -27,3 +27,5 @@ const data = {
         {content: 'Muy buena placa de video', username: 'Matias_Julian_Alvaro'}
     ],
 }
+
+module.exports= computadoras;
