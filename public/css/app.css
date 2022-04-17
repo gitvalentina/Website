@@ -178,7 +178,11 @@ hr {
 }
 
 .product-box {
+<<<<<<< HEAD
+  background-color: #ffffff;
+=======
   background-color: #fefcfc;
+>>>>>>> 9863a66abaa979b84e9aa0c1aa11d338cf7b37a2
   border-radius: 5px;
   overflow: hidden;
   transition: 300ms;
