@@ -388,6 +388,7 @@ hr {
   border-radius: 8px;
   border: none;
   margin-bottom: 15px;
+  font-family: 'Bebas Neue', cursive ;
 }
 
 .action-button {
@@ -454,6 +455,7 @@ hr {
   border: none;
   border: solid 1px var(--gray);
   padding: 0 15px;
+  font-family: 'Bebas Neue', cursive ;
 }
 .products-title{
   text-align: center;
