@@ -21,11 +21,11 @@ const computadoras = {
     ],
 
     comments: [
-        {content: 'No hay notebook en el mercado con las prestaciones de ésta y a mejor precio. Es rápida y el renderizado es bueno.', username: 'TomasGarrido10'},
-        {content: 'El ángulo de visión de la pantalla no es tan amplio, pero suficiente. La batería dura por lo menos 4 horas o más, dependiendo del uso de la cpu/gpu. Eso está bien, teniendo en cuenta el tipo de cpu que trae.', username: 'LolaMeyer11'},
-        {content: 'Diez puntos, la compu viene lista para usar, y con las especificaciones pedidas. Anda bárbaro y el mismo día en que vino, ya estaba trabajando con ella. Me salvaron!', username: 'Julian_Marcos'},
-        {content: 'Muy buena relacion calidad-precio. Por este valor muy dificil encontrar las prestaciones que tiene esta maquina.', username: 'SofiaKravi123'},
-        {content: 'Excelente máquina, la probé luego de haber instalado el sistema operativo. Es un avión me tomó todos los programas rapidísimo. El material es de muy buena calidad se lo ve resistente', username: 'Matias_Julian_Alvaro'}
+        {photo: '/images/users/coment1.jpg' , content: 'No hay notebook en el mercado con las prestaciones de ésta y a mejor precio. Es rápida y el renderizado es bueno.', username: 'TomasGarrido10'},
+        {photo: '/images/users/coment2.jpg' , content: 'El ángulo de visión de la pantalla no es tan amplio, pero suficiente. La batería dura por lo menos 4 horas o más, dependiendo del uso de la cpu/gpu. Eso está bien, teniendo en cuenta el tipo de cpu que trae.', username: 'LolaMeyer11'},
+        {photo: '/images/users/coment3.jpg' , content: 'Diez puntos, la compu viene lista para usar, y con las especificaciones pedidas. Anda bárbaro y el mismo día en que vino, ya estaba trabajando con ella. Me salvaron!', username: 'Julian_Marcos'},
+        {photo: '/images/users/coment4.jpg' , content: 'Muy buena relacion calidad-precio. Por este valor muy dificil encontrar las prestaciones que tiene esta maquina.', username: 'SofiaKravi123'},
+        {photo: '/images/users/coment5.jpg' , content: 'Excelente máquina, la probé luego de haber instalado el sistema operativo. Es un avión me tomó todos los programas rapidísimo. El material es de muy buena calidad se lo ve resistente', username: 'Matias_Julian_Alvaro'}
     ],
 }
 
