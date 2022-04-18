@@ -1,6 +1,6 @@
 const computadoras = {
     user: { 
-        id: 1,
+        id: 26375635,
         nombreDeUsuario: " LeylaFernandez_123",
         email: "leyalfernandez@gmail.com",
         imagen: "/images/users/usuario.jpg",

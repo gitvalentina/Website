@@ -1,5 +1,4 @@
-<%- include('./partials/header.ejs')%>
-
+<%- include('./partials/header_logueado.ejs')%>
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
@@ -7,35 +6,29 @@
 				<h2 class="products-title">Agregar producto</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> 
 				<form class="formularios" action="/users/profile" method="get" action="get">
-                    
-                    <p>
+                
+                    <div>
                         <label for="">Nombre del producto</label>
                         <input type="email" name="nombre">
-                    </p>
+					</div> <br>
 					
-                    <p>
+                    <div>
                         <label for="">Imagen</label>
                         <input type="file" name="img">
-                    </p>
-                    <p>
+					</div> <br>
+                    <div>
                         <label >Descripcion</label>
                         <input type="text" name="descripcion">
-                    </p>
-					<p>
+					</div> <br>
+					<div>
                         <label >Fecha de carga</label>
                         <input type="date" name="fecha">
-                    </p>
-
-                    <p>
+                    </div> <br>
+                    <div>
                         <button>Agregar producto</button>
-                    </p>
+					</div>
                 </form>
-			</h2>
-
-
-			<%- include('./partials/footer.ejs')%>;
-</body>
-
-</html>
+		</div>
+	</div>
+<%- include('./partials/footer.ejs')%>;
