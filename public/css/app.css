@@ -57,7 +57,7 @@ img {
 
 input,
 textarea {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-style: italic;
   
 }
@@ -128,6 +128,7 @@ hr {
 .main-navbar {
   margin-top: 20px;
   display: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .left-navbar,
@@ -142,7 +143,7 @@ hr {
   font-size: 1em;
   color: rgb(15, 39, 111);
   text-decoration: solid;
-  font-family: 'Bebas Neue', cursive ;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
 
 .logout:hover{
@@ -182,6 +183,7 @@ hr {
   font-weight: 400;
   color: black;
   background-color: royalblue;
+  font-family:'Courier New', Courier, monospace;
 
   
 }
@@ -331,6 +333,7 @@ hr {
 .product-detail-title {
   font-weight: 400;
   font-size: 2.8em;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .product-detail-description {
@@ -459,6 +462,7 @@ hr {
 }
 .products-title{
   text-align: center;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .formularios{
@@ -495,6 +499,7 @@ div.mb-3{
 .main-title{
   font-size: 25px;
   margin-bottom: 10px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .btn{
