@@ -7,6 +7,7 @@ var controlador = require('../controllers/usersControllers');
 router.get('/login', controlador.login);
 router.get('/profile', controlador.profile);
 router.get('/profile-edit', controlador.profileEdit);
-router.get('/register', controlador.register);
+router.post('/register', controlador.store);
+router.get('/logout', controlador.logout);
 
 module.exports = router;

@@ -1,0 +1,16 @@
+<%- include('./partials/header_logueado.ejs')%>
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title"><%= producto.title %></h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+			<form class="formularios" action="/<%= product.id %>/delete" method="post">
+                <input type="submit" value="Borrar">
+            </form>
+            <a href="/<%= product.id  %>/edit "></a>
+            
+		</div>
+	</div>
+<%- include('./partials/footer.ejs')%>;
