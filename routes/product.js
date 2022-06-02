@@ -10,6 +10,6 @@ router.get('/:id', controlador.show);
 router.get('/:id/edit', controlador.edit);
 router.post('');
 router.post('/delete', controlador.delete);
-
+router.post('/add', controlador.store);
 
 module.exports = router;
