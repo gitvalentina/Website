@@ -5,32 +5,28 @@ module.exports = function (sequelize, DataTypes) {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
-        title: {
+        content: {
             type: DataTypes.STRING
         },
-        description: {
-            type: DataTypes.STRING
+        product_id: {
+            type: DataTypes.INTEGER
         },
-        photo: {
-            type: DataTypes.STRING
+        user_id: {
+            type: DataTypes.INTEGER
         },
         createdAt: {
             type: DataTypes.DATE
         },
         updatedAt: {
             type: DataTypes.DATE
-        },
-        user_id: {
-            type: DataTypes.INTEGER
         }
-
     }
     const config = {
-        tableName: 'productos',
+        tableName: 'comentarios',
         timestamps: false
 
     }
-    const product = sequelize.define('Product', cols, config);
+    const comentario = sequelize.define('Comment', cols, config);
 
-    return product;
+    return comentario;
 }

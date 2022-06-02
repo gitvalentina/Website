@@ -1,4 +1,3 @@
-const computadoras = require('../db/data');
 var db = require('../database/models');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
@@ -17,19 +16,29 @@ const controlador={
             res.render('register');
     },
     store: function (req, res) {
-      db.User.create(req.body)
-          .then(function(){
-              res.redirect('/');
-          })
-          .catch(function(error){
-              res.send(error);
-          })
+      if (!req.body.email) { throw Error('Not email provided') }
+      db.User.create({
+        nombre_usuario: req.body.username,
+        contrasenia: req.body.password,
+        email: req.body.email,
+        birthdate: req.body.birthdate,
+        photo: req.body.photo
+      })
+      .then(function(){
+        res.redirect('/');
+      })
+      .catch(function(error){
+        res.send(error);
+      })
     },
+    //para procesar info como el log in, usamos metodo post
     access: function(req,res, next){
-      db.User.findOne({ where: { username: req.body.username } } )
+      //busco el usuario en base al username que me manda
+      db.User.findOne({ where: { email: req.body.email } } )
         .then(function(user){
           if (!user) throw Error('User not found')
-          if (hasher.compareSync (req.body.password, user.password)) {
+      //comparo la password que me manda con la de la base de datos
+          if (hasher.compareSync (req.body.contra, user.contrasenia)) {
             req.session.user = user;
             if (req.body.rememberme) {
             res.cookie('userId', user.id, {maxAge: 1000 * 60 * 60* 7})

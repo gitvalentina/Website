@@ -1,4 +1,3 @@
-const computadoras = require('../db/data');
 var db = require('../database/models');
 
 

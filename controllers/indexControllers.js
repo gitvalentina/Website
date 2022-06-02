@@ -1,11 +1,10 @@
-const computadoras = require('../db/data');
 var db = require('../database/models');
 
 const controlador={
     index: function(req, res, next) {
         db.Product.findAll()
-          .then(function(){
-            res.render('index', { Product });
+          .then(function(products){
+            res.render('index', { products });
           })
           .catch(function(error){
             res.send(error);

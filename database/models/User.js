@@ -1,22 +1,38 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     const cols = {
-        id:{
+        id: {
             autoIncremet: true,
             primaryKey: true,
             type: DataTypes.INTEGER
         },
-        nombre_usuario:{
+        nombre_usuario: {
             type: DataTypes.STRING
         },
-        contrasenia:{type: DataTypes.STRING},
-        email: {type: DataTypes.STRING}
+        contrasenia: {
+            type: DataTypes.STRING
+        },
+        email: {
+            type: DataTypes.STRING
+        },
+        birthdate: {
+            type: DataTypes.DATE
+        },
+        photo: {
+            type: DataTypes.STRING
+        },
+        createdAt: {
+            type: DataTypes.DATE
+        },
+        updatedAt: {
+            type: DataTypes.DATE
+        }
     }
-    const config ={
+    const config = {
         tableName: 'usuarios',
         timestamps: false
 
     }
     const usuario = sequelize.define('User', cols, config);
-    
+
     return usuario;
 }

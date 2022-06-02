@@ -7,7 +7,7 @@
 				<h2 class="products-title">Registrate</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form action="/users/profile" method="post" class="formularios" >
+			<form action="/users/register" method="post" class="formularios" >
 					<div class="mb-3">
 						<label for="mail" class="letraForm"> E-mail: </label> <br>
 						<input type="email" name="email" id="email" placeholder="EMAIL" value="">
@@ -21,16 +21,12 @@
 						<input type="password" name="password" id="password" placeholder="PASSWORD" >
 					</div>
 					<div class="mb-3">
-						<label class= "letraForm"for="id"> Numero de documento: </label> <br>
-						<input type="number" name="id" placeholder= "ID" value="">
-					</div>
-					<div class="mb-3">
 						<label class= "letraForm" for="age"> Fecha de nacimiento: </label> <br>
-						<input type="birthdate" name="birthday" placeholder= "BIRTHDATE" value=""> 
+						<input type="date" name="birthdate" placeholder= "BIRTHDATE" value=""> 
 					</div>	
 					<div class="mb-3">
 						<label class= "letraForm"for="id"> Foto de perfil: </label> <br>
-						<input type="file" name="" placeholder= "" value="">
+						<input type="file" name="photo" placeholder= "" value="">
 					</div>
 					
 					<p>
