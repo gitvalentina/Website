@@ -1,6 +1,7 @@
 var db = require('../database/models');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
+const hasher = require('bcryptjs');
 
 const controlador={
     login: function(req, res, next) {
@@ -19,7 +20,7 @@ const controlador={
       if (!req.body.email) { throw Error('Not email provided') }
       db.User.create({
         nombre_usuario: req.body.username,
-        contrasenia: req.body.password,
+        contrasenia: hasher.hashSync(req.body.password, 10),
         email: req.body.email,
         birthdate: req.body.birthdate,
         photo: req.body.photo
