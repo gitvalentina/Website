@@ -1,4 +1,5 @@
 var db = require('../database/models');
+const op = db.Sequelize.Op;
 
 const controlador={
     index: function(req, res, next) {
@@ -9,17 +10,26 @@ const controlador={
           .catch(function(error){
             res.send(error);
           });
-        
       },
     search: function (req, res, next) {
-            res.render('search-results');
-    },
-    prueba: function(req,res){
-      db.product.findAll()
-        .then(function(product){
-          res.send(product);
-        });
-      
+      db.Product.findAll({
+        where:{ 
+          [op.or]:[
+            {title:{
+              [op.like]:'%'+req.query.search+'%'
+            }},
+            {description:{
+              [op.like]:'%'+req.query.search+'%'
+            }}
+          ]
+        }
+      })
+      .then(function(products){
+        res.render('search-results', { products });
+      })
+      .catch(function(error){
+        res.send(error);
+      });
     }
 }
 
