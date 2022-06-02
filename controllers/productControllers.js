@@ -9,7 +9,7 @@ const controlador={
         res.render('product-add');
     },
     show: function(req,res){
-        const computadoras = db.Product.findByPk(req.params.id)
+        db.Product.findByPk(req.params.id)
         .then(function(product){
             res.render('product-show', { product });
         })
@@ -18,7 +18,13 @@ const controlador={
         })
     },
     store: function (req, res) {
-        db.Product.create(req.body)
+        db.Product.create({
+            title: req.body.nombre,
+            description: req.body.descripcion,
+            photo: req.body.img,
+            user_id: 1,
+            createdAt:req.body.fecha
+          })
             .then(function(){
                 res.redirect('/');
             })
