@@ -18,20 +18,43 @@ const controlador={
         })
     },
     store: function (req, res) {
-        db.Product.create({
-            title: req.body.nombre,
-            description: req.body.descripcion,
-            photo: req.body.img,
-            user_id: 1,
-            createdAt:req.body.fecha
-          })
-            .then(function(){
-                res.redirect('/');
+        console.log(req.body);
+        if (!req.body.username) {
+          throw Error('El nombre de usuario es requerido')  
+        } else if (!req.body.password || req.body.password.length < 3) {
+          throw Error('La password debe tener mas de 3 caracteres')
+        } else if (!req.photo) {
+          throw Error('La imagen es requerida')
+        } else if (!req.body.birthdate) {
+          throw Error('La fecha de nacimiento es requerida')
+        } else if (!req.body.email) {
+          throw Error('Email not provided')
+        } else {
+          db.User.findOne({
+              where: {
+                email: req.body.email
+              }
             })
-            .catch(function(error){
-                res.send(error);
+            .then(function (user) {
+              if (user) {
+                throw Error('Este email ya esta siendo utilizado')
+              }
             })
-    },
+          }
+          db.User.create({
+              nombre_usuario: req.body.username,
+              contrasenia: hasher.hashSync(req.body.password, 10),
+              email: req.body.email,
+              birthdate: req.body.birthdate,
+              photo: req.body.photo
+            })
+            .then(function () {
+              res.redirect('/');
+            })
+            .catch(function (error) {
+              res.send(error);
+            })
+        },
     delete: function (req, res) {
         db.Product.destroy({where:{ id: req.params.id}})
             .then(function(){
