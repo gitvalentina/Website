@@ -1,22 +1,20 @@
 <%- include('./partials/header_logueado.ejs')%>
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title"><%= product.title %></h2>
-				<img class="img-cover" src="<%=product.photo %>" >
-			</div>
-			<!-- Show the "ultimos" products -->
-		<h2>Comments</h2>
-		
-		<% if locals.user && user_id == product.user_id   %> 
-		<form class="formularios" action="/<%= product.id %>/delete" method="post">
-            <input type="submit" value="Borrar">
-        </form>
-        <a href="/<%= product.id  %>/edit "></a>
-            
+<!-- Novedades -->
+<div class="container products-wrapper">
+	<div class="row">
+		<div class="col-12">
+			<h2 class="products-title"><%= product.title %></h2>
+			<img class="img-cover" src="<%=product.photo %>">
 		</div>
+		<!-- Show the "ultimos" products -->
+		<h2>Comments</h2>
+
+		<% if locals.user && user_id == product.user_id   %>
+		<form class="formularios" action="/<%= product.id %>/delete" method="post">
+			<input type="submit" value="Borrar">
+		</form>
+		<a href="/<%= product.id  %>/edit "></a>
+
 	</div>
+</div>
 <%- include('./partials/footer.ejs')%>;
-
-

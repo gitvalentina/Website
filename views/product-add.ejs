@@ -1,34 +1,34 @@
 <%- include('./partials/header_logueado.ejs')%>
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Agregar producto</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-				<form class="formularios" action="/product/add" method="post" action="get">
-                
-                    <div>
-                        <label for="">Nombre del producto</label>
-                        <input type="text" name="nombre" id="nombre">
-					</div> <br>
-					
-                    <div>
-                        <label for="">Imagen</label>
-                        <input type="file" name="img" id="img">
-					</div> <br>
-                    <div>
-                        <label >Descripcion</label>
-                        <input type="text" name="descripcion" id="descripcion">
-					</div> <br>
-					<div>
-                        <label >Fecha de carga</label>
-                        <input type="date" name="fecha" id="fecha">
-                    </div> <br>
-                    <div>
-                        <button>Agregar producto</button>
-					</div>
-                </form>
-		</div>
-	</div>
+<!-- Novedades -->
+<div class="container products-wrapper">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="products-title">Agregar producto</h2>
+        </div>
+        <!-- Show the "ultimos" products -->
+        <form class="formularios" action="/product/add" method="post" action="get">
+
+            <div>
+                <label for="">Nombre del producto</label>
+                <input type="text" name="nombre" id="nombre">
+            </div> <br>
+
+            <div>
+                <label for="">Imagen</label>
+                <input type="file" name="img" id="img">
+            </div> <br>
+            <div>
+                <label>Descripcion</label>
+                <input type="text" name="descripcion" id="descripcion">
+            </div> <br>
+            <div>
+                <label>Fecha de carga</label>
+                <input type="date" name="fecha" id="fecha">
+            </div> <br>
+            <div>
+                <button>Agregar producto</button>
+            </div>
+        </form>
+    </div>
+</div>
 <%- include('./partials/footer.ejs')%>;

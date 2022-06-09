@@ -1,40 +1,42 @@
 <%- include('./partials/header_logueado.ejs')%>
-	<!-- product detail -->
-	<div class="container products-wrapper">
-		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%= computadoras.products[1].title %></h2> 
-			<p class="product-detail-description">
-				<a href="/product/add">Editar</a>
-			</p>
-		</div>
-		<div class="product-detail">
-			<div class="row">
-				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="<%= computadoras.products[1].photo %>" alt="" class="product-detail-img">
-					<p class="product-detail-description">
-						Ya sea que se encuentre en casa, en la escuela o en el trabajo, obtenga todo el rendimiento que necesita con uno de los procesadores Intel más recientes; así, podrá mantener el orden y hacer que sus aplicaciones se ejecuten de manera estable y sin problemas.</p>
-				</article>
-				<div class="col-12 col-lg-4">
-					<section class="comments">
-						<% for (let i = 0; i < computadoras.comments.length; i++) { %>	
-						<article>
-							<img src="<%= computadoras.comments[i].photo %>" alt="">
-							<div class="data">
-								<p class="user">
+<!-- product detail -->
+<div class="container products-wrapper">
+	<div class="d-flex align-items-center">
+		<h2 class="products-title"><%= computadoras.products[1].title %></h2>
+		<p class="product-detail-description">
+			<a href="/product/add">Editar</a>
+		</p>
+	</div>
+	<div class="product-detail">
+		<div class="row">
+			<article class="col-12 col-lg-8 product-detail-info">
+				<img src="<%= computadoras.products[1].photo %>" alt="" class="product-detail-img">
+				<p class="product-detail-description">
+					Ya sea que se encuentre en casa, en la escuela o en el trabajo, obtenga todo el rendimiento que
+					necesita con uno de los procesadores Intel más recientes; así, podrá mantener el orden y hacer que
+					sus aplicaciones se ejecuten de manera estable y sin problemas.</p>
+			</article>
+			<div class="col-12 col-lg-4">
+				<section class="comments">
+					<% for (let i = 0; i < computadoras.comments.length; i++) { %>
+					<article>
+						<img src="<%= computadoras.comments[i].photo %>" alt="">
+						<div class="data">
+							<p class="user">
 								<strong> <a href="/users/profile"><%= computadoras.comments[i].username%></a> </strong>
 								<%= computadoras.comments[i].content%></p>
-							</div>
-						</article>
-						<% }%>
-					</section>
-					<form class="form" action="/product" method="get">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-					</form>
-					<hr>
-				</div>
+						</div>
+					</article>
+					<% }%>
+				</section>
+				<form class="form" action="/product" method="get">
+					<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+					<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+				</form>
+				<hr>
 			</div>
 		</div>
+	</div>
 	<!-- /product detail -->
 
-<%- include('./partials/footer.ejs')%>;
+	<%- include('./partials/footer.ejs')%>;

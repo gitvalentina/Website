@@ -1,49 +1,68 @@
 var db = require('../database/models');
 
 
-const controlador={
-    product: function(req, res, next) {
-        res.render('product', {computadoras: computadoras});
+const controlador = {
+    product: function (req, res, next) {
+        res.render('product', {
+            computadoras: computadoras
+        });
     },
     add: function (req, res, next) {
         res.render('product-add');
     },
-    show: function(req,res){
+    show: function (req, res) {
         db.Product.findByPk(req.params.id)
-        .then(function(product){
-            res.render('product-show', { product });
-        })
-        .catch(function(error){
-            res.send(error);
-        })
+            .then(function (product) {
+                res.render('product-show', {
+                    product
+                });
+            })
+            .catch(function (error) {
+                res.send(error);
+            })
     },
     store: function (req, res) {
         console.log(req.body);
         if (!req.body.username) {
-          throw Error('El nombre de usuario es requerido')  
+            throw Error('El nombre de usuario es requerido')
         } else if (!req.body.password || req.body.password.length < 3) {
-          throw Error('La password debe tener mas de 3 caracteres')
+            throw Error('La password debe tener mas de 3 caracteres')
         } else if (!req.photo) {
-          throw Error('La imagen es requerida')
+            throw Error('La imagen es requerida')
         } else if (!req.body.birthdate) {
-          throw Error('La fecha de nacimiento es requerida')
+            throw Error('La fecha de nacimiento es requerida')
         } else if (!req.body.email) {
-          throw Error('Email not provided')
+            throw Error('Email not provided')
         } else {
-          db.User.findOne({
-              where: {
-                email: req.body.email
-              }
+            db.User.findOne({
+                    where: {
+                        email: req.body.email
+                    }
+                })
+                .then(function (user) {
+                    if (user) {
+                        throw Error('Este email ya esta siendo utilizado')
+                    }
+                })
+        }
+        db.User.create({
+                nombre_usuario: req.body.username,
+                contrasenia: hasher.hashSync(req.body.password, 10),
+                email: req.body.email,
+                birthdate: req.body.birthdate,
+                photo: req.body.photo
             })
-            .then(function (user) {
-              if (user) {
-                throw Error('Este email ya esta siendo utilizado')
-              }
+            .then(function () {
+                res.redirect('/');
             })
-<<<<<<< HEAD
+            .catch(function (error) {
+                res.send(error);
+            })
+
     },
+
     comment: function (req, res) {
-        if (!req.session.user){
+        if (!req.session.user) {
             throw Error('Not authorized')
         }
         // 
@@ -51,56 +70,49 @@ const controlador={
         // set book from url params
         req.body.product_id = req.params.id;
         db.Comment.create(req.body)
-            .then(function(product){
+            .then(function (product) {
                 res.redirect('/');
             })
-            .catch(function(error){
+            .catch(function (error) {
                 res.send(error);
             })
     },
-=======
-          }
-          db.User.create({
-              nombre_usuario: req.body.username,
-              contrasenia: hasher.hashSync(req.body.password, 10),
-              email: req.body.email,
-              birthdate: req.body.birthdate,
-              photo: req.body.photo
-            })
-            .then(function () {
-              res.redirect('/');
-            })
-            .catch(function (error) {
-              res.send(error);
-            })
-        },
->>>>>>> 293e10ee033023d363a86530f457b7558ba117c3
+
+
     delete: function (req, res) {
-        if (!req.session.user){
+        if (!req.session.user) {
             throw Error('Not authorized')
         }
-        db.Product.destroy({where:{ id: req.params.id}})
-            .then(function(){
+        db.Product.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(function () {
                 res.redirect('/');
             })
-            .catch(function(error){
+            .catch(function (error) {
                 res.send(error);
             })
     },
     update: function (req, res) {
-        db.Product.update(req.body, {where:{ id: req.params.id}})
-            .then(function(){
+        db.Product.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(function () {
                 res.redirect('/');
             })
-            .catch(function(error){
+            .catch(function (error) {
                 res.send(error);
             })
     },
-    edit: function(req, res){
+    edit: function (req, res) {
         res.render
     }
 
 }
 
 
-module.exports=controlador;
+module.exports = controlador;

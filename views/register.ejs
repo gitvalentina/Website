@@ -1,39 +1,39 @@
 <%- include('./partials/header.ejs')%>
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Registrate</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-			<form action="/users/register" method="post" class="formularios" >
-					<div class="mb-3">
-						<label for="mail" class="letraForm"> E-mail: </label> <br>
-						<input type="email" name="email" id="email" placeholder="EMAIL" value="">
-					</div>
-					<div class="mb-3">
-						<label for="user" class="letraForm"> Username: </label> <br>
-						<input type="text" name="username" id="username" placeholder="USERNAME" >
-					</div>
-					<div class="mb-3">
-						<label for="password" class="letraForm"> Password: </label> <br>
-						<input type="password" name="password" id="password" placeholder="PASSWORD" >
-					</div>
-					<div class="mb-3">
-						<label class= "letraForm" for="age"> Fecha de nacimiento: </label> <br>
-						<input type="date" name="birthdate" placeholder= "BIRTHDATE" value=""> 
-					</div>	
-					<div class="mb-3">
-						<label class= "letraForm"for="id"> Foto de perfil: </label> <br>
-						<input type="file" name="photo" placeholder= "" value="">
-					</div>
-					
-					<p>
-						<button type="submit"> Register </button>
-					</p>						
-			</form>
+<!-- Novedades -->
+<div class="container products-wrapper">
+	<div class="row">
+		<div class="col-12">
+			<h2 class="products-title">Registrate</h2>
 		</div>
+		<!-- Show the "ultimos" products -->
+		<form action="/users/register" method="post" class="formularios">
+			<div class="mb-3">
+				<label for="mail" class="letraForm"> E-mail: </label> <br>
+				<input type="email" name="email" id="email" placeholder="EMAIL" value="">
+			</div>
+			<div class="mb-3">
+				<label for="user" class="letraForm"> Username: </label> <br>
+				<input type="text" name="username" id="username" placeholder="USERNAME">
+			</div>
+			<div class="mb-3">
+				<label for="password" class="letraForm"> Password: </label> <br>
+				<input type="password" name="password" id="password" placeholder="PASSWORD">
+			</div>
+			<div class="mb-3">
+				<label class="letraForm" for="age"> Fecha de nacimiento: </label> <br>
+				<input type="date" name="birthdate" placeholder="BIRTHDATE" value="">
+			</div>
+			<div class="mb-3">
+				<label class="letraForm" for="id"> Foto de perfil: </label> <br>
+				<input type="file" name="photo" placeholder="" value="">
+			</div>
+
+			<p>
+				<button type="submit"> Register </button>
+			</p>
+		</form>
 	</div>
+</div>
 
 <%- include('./partials/footer.ejs')%>;
