@@ -1,17 +1,21 @@
 var db = require('../database/models');
-
-
 const controlador = {
-    product: function (req, res, next) {
-        res.render('product', {
-            computadoras: computadoras
-        });
-    },
     add: function (req, res, next) {
         res.render('product-add');
     },
     show: function (req, res) {
-        db.Product.findByPk(req.params.id)
+        db.Product.findByPk(req.params.id, {
+                include: [{
+                        association: 'user'
+                    },
+                    {
+                        association: 'comentario',
+                        include: {
+                            association: 'user'
+                        }
+                    }
+                ]
+            })
             .then(function (product) {
                 res.render('product-show', {
                     product
@@ -69,9 +73,12 @@ const controlador = {
         req.body.user_id = req.session.user.id;
         // set book from url params
         req.body.product_id = req.params.id;
-        db.Comment.create(req.body)
-            .then(function (product) {
-                res.redirect('/');
+        db.Comment.create({
+                comentario: req.body.comentario,
+                productId: req.params.id,
+                userId: req.session.user.id
+            }).then(function (product) {
+                res.redirect('/products/:id/' + req.params.id);
             })
             .catch(function (error) {
                 res.send(error);

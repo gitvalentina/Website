@@ -1,44 +1,11 @@
 var db = require('../database/models');
-const req = require('express/lib/request');
-const res = require('express/lib/response');
 const hasher = require('bcryptjs');
 
 const controlador = {
   login: function (req, res, next) {
     res.render('login');
   },
-  profile: function (req, res, next) {
-    res.render('profile', {
-      user: computadoras
-    });
-  },
-  profileEdit: function (req, res, next) {
-    res.render('profile-edit', {
-      user: computadoras.user
-    });
-  },
-  register: function (req, res, next) {
-    res.render('register');
-  },
-  store: function (req, res) {
-    if (!req.body.email) {
-      throw Error('Not email provided')
-    }
-    db.User.create({
-        nombre_usuario: req.body.username,
-        contrasenia: hasher.hashSync(req.body.password, 10),
-        email: req.body.email,
-        birthdate: req.body.birthdate,
-        photo: req.body.photo
-      })
-      .then(function () {
-        res.redirect('/');
-      })
-      .catch(function (error) {
-        res.send(error);
-      })
-  },
-  //para procesar info como el log in, usamos metodo post
+  //para procesar info del log in, usamos metodo post
   access: function (req, res, next) {
     //busco el usuario en base al username que me manda
     db.User.findOne({
@@ -65,8 +32,51 @@ const controlador = {
         next(err)
       })
   },
+  profile: function (req, res) {
+    db.User.findByPk(req.params.id, {
+      include: [{
+          association: 'productos'
+        },
+        {
+          association: 'comentarios'
+        }
+      ],
+      order: [
+          ['productos', 'id', 'desc']
+        ]
+        .then(data => {
+          res.render('profile'), {
+            user: data
+          }
+        })
+    });
+  },
+  profileEdit: function (req, res) {
+    res.render('profile-edit');
+  },
+  register: function (req, res, next) {
+    res.render('register');
+  },
+  store: function (req, res) {
+    if (!req.body.email) {
+      throw Error('Not email provided')
+    }
+    db.User.create({
+        nombre_usuario: req.body.username,
+        contrasenia: hasher.hashSync(req.body.password, 10),
+        email: req.body.email,
+        birthdate: req.body.birthdate,
+        photo: req.body.photo
+      })
+      .then(function () {
+        res.redirect('/users/login');
+      })
+      .catch(function (error) {
+        res.send(error);
+      })
+  },
 
-  logout: function (req, res, next) {
+  logout: function (req, res) {
     req.session.user = null;
     res.clearCookie('userId');
     res.redirect('/')
