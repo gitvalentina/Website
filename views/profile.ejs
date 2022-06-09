@@ -1,4 +1,8 @@
-<%- include('./partials/header_logueado.ejs')%>
+<% if (user) { %>
+	<%- include('./partials/header_logueado') %>
+	<% } else{ %>
+	<%- include('./partials/header') %>
+	<%} %>
 
 <!-- Datos del usuario -->
 <section class="info-usuario container products-wrapper">

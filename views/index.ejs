@@ -1,5 +1,9 @@
 	<!-- Header -->
-	<%- include('./partials/header.ejs')%>
+	<% if (user) { %>
+	<%- include('./partials/header_logueado') %>
+	<% } else{ %>
+	<%- include('./partials/header') %>
+	<%} %>
 	<!-- Banner -->
 	<div class="banner">
 		<img src="/images/banner-compu.jpg" alt="Banner de ofertas">
