@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var controlador = require('../controllers/usersControllers');
-const path = require('path');
-
+var path = require('path');
 var multer = require('multer');
+
 let storage = multer.diskStorage({
     destination: path.join(__dirname, '../public/images'),
     filename: function (req, file, cb) {
