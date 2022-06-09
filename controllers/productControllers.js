@@ -32,7 +32,26 @@ const controlador={
                 res.send(error);
             })
     },
+    comment: function (req, res) {
+        if (!req.session.user){
+            throw Error('Not authorized')
+        }
+        // 
+        req.body.user_id = req.session.user.id;
+        // set book from url params
+        req.body.product_id = req.params.id;
+        db.Comment.create(req.body)
+            .then(function(product){
+                res.redirect('/');
+            })
+            .catch(function(error){
+                res.send(error);
+            })
+    },
     delete: function (req, res) {
+        if (!req.session.user){
+            throw Error('Not authorized')
+        }
         db.Product.destroy({where:{ id: req.params.id}})
             .then(function(){
                 res.redirect('/');

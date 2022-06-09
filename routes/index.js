@@ -7,6 +7,4 @@ var controlador=require('../controllers/indexControllers');
 router.get('/', controlador.index);
 router.get('/search-results', controlador.search);
 
-
-
 module.exports = router;
