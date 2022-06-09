@@ -1,3 +1,5 @@
+const { comment } = require("../../controllers/productControllers");
+
 module.exports = function (sequelize, DataTypes) {
     const cols = {
         id: {
@@ -26,14 +28,13 @@ module.exports = function (sequelize, DataTypes) {
         timestamps: false
 
     }
-    const comentario = sequelize.define('Comment', cols, config);
-
+    const comentario = sequelize.define('Coment', cols, config);
     comentario.asssociate = function (models) {
-        comentario.belongsTo(models.usuarios, {
-            as: "user",
+        comentario.belongsTo(models.User, {
+            as: "usuario",
             foreignKey: "user_id"
         })
-        comentario.belongsTo(models.productos, {
+        comentario.belongsTo(models.Product, {
             as: "producto",
             foreignKey: "producto_id"
         })

@@ -1,17 +1,20 @@
 var db = require('../database/models');
 const controlador = {
+    product:function(req,res){
+        res.render('index')
+    },
     add: function (req, res, next) {
         res.render('product-add');
     },
     show: function (req, res) {
         db.Product.findByPk(req.params.id, {
                 include: [{
-                        association: 'user'
+                        association: 'usuario'
                     },
                     {
                         association: 'comentario',
                         include: {
-                            association: 'user'
+                            association: 'usuario'
                         }
                     }
                 ]
@@ -73,10 +76,10 @@ const controlador = {
         req.body.user_id = req.session.user.id;
         // set book from url params
         req.body.product_id = req.params.id;
-        db.Comment.create({
+        db.Coment.create({
                 comentario: req.body.comentario,
                 productId: req.params.id,
-                userId: req.session.user.id
+                user_id: req.session.user.id
             }).then(function (product) {
                 res.redirect('/products/:id/' + req.params.id);
             })
@@ -116,7 +119,7 @@ const controlador = {
             })
     },
     edit: function (req, res) {
-        res.render
+        res.render('product-edit')
     }
 
 }

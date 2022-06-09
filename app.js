@@ -30,7 +30,7 @@ app.use(session( {
 app.use(function(req, res, next){
   console.log(req.cookies);
   if(!req.session.user){
-    db.User.findByPk(req.cookies.userId)
+    db.User.findByPk(req.cookies.user_id)
     .then(function(user){
       req.session.user = user;
       next();

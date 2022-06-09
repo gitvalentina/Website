@@ -19,7 +19,7 @@ const controlador = {
         if (hasher.compareSync(req.body.contra, user.contrasenia)) {
           req.session.user = user;
           if (req.body.rememberme) {
-            res.cookie('userId', user.id, {
+            res.cookie('user_id', user.id, {
               maxAge: 1000 * 60 * 60 * 7
             })
           }
@@ -35,14 +35,14 @@ const controlador = {
   profile: function (req, res) {
     db.User.findByPk(req.params.id, {
       include: [{
-          association: 'productos'
+          association: 'producto'
         },
         {
-          association: 'comentarios'
+          association: 'comentario'
         }
       ],
       order: [
-          ['productos', 'id', 'desc']
+          ['producto', 'id', 'desc']
         ]
         .then(data => {
           res.render('profile'), {
@@ -78,7 +78,7 @@ const controlador = {
 
   logout: function (req, res) {
     req.session.user = null;
-    res.clearCookie('userId');
+    res.clearCookie('user_id');
     res.redirect('/')
   }
 }
