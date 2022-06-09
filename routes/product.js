@@ -1,9 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var controlador = require('../controllers/productControllers');
+var multer = require('multer');
+const path = require('path');
+let storage = multer.diskStorage({
+    destination: path.join(__dirname, '../public/images')
+})
+
+let upload = multer({
+    storage: storage
+})
 
 
-/* GET home page. *///Usamos metodo. get porque queremos mostrar la vista o formulario //
+/* GET home page. */ //Usamos metodo. get porque queremos mostrar la vista o formulario //
 router.get('/', controlador.product);
 
 router.get('/:id', controlador.show);
