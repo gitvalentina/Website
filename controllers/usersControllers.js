@@ -32,13 +32,35 @@ const controlador = {
         next(err)
       })
   },
+  myProfile: function (req, res) {
+    db.User.findByPk(req.params.id, {
+      include: [{
+          association: "productos"
+        },
+        {
+          association: "comentarios"
+        }
+      ],
+      order: [
+          ['producto', 'id', 'desc']
+        ]
+        .then(data => {
+          res.render('profile'), {
+            user: data
+          }
+        })
+    })
+    .catch (function(error){
+      res.send(error)
+    })
+  },
   profile: function (req, res) {
     db.User.findByPk(req.params.id, {
       include: [{
-          association: 'producto'
+          association: "productos"
         },
         {
-          association: 'comentario'
+          association: "comentarios"
         }
       ],
       order: [

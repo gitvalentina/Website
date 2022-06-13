@@ -1,5 +1,3 @@
-const { comment } = require("../../controllers/productControllers");
-
 module.exports = function (sequelize, DataTypes) {
     const cols = {
         id: {
@@ -36,7 +34,7 @@ module.exports = function (sequelize, DataTypes) {
         })
         comentario.belongsTo(models.Product, {
             as: "producto",
-            foreignKey: "producto_id"
+            foreignKey: "product_id"
         })
     }
 

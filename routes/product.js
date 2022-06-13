@@ -24,7 +24,9 @@ router.get('/:id/edit', controlador.edit);
 
 
 router.get('/delete', controlador.delete);
-router.post('/delete', controlador.delete);
+router.post('/:id/delete', controlador.delete);
+
+router.post('/:id/comment', controlador.comment);
 
 router.get('/add', controlador.add);
 router.post('/add', upload.single('photo'), controlador.store);

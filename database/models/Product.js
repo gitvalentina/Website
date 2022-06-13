@@ -14,27 +14,25 @@ module.exports = function (sequelize, DataTypes) {
         photo: {
             type: DataTypes.STRING
         },
+        user_id: {
+            type: DataTypes.INTEGER
+        },
         createdAt: {
             type: DataTypes.DATE
         },
         updatedAt: {
             type: DataTypes.DATE
-        },
-        user_id: {
-            type: DataTypes.INTEGER
         }
-
     }
     const config = {
         tableName: 'productos',
-        timestamps: false
-
+        timestamps: false,
     }
     const Product = sequelize.define('Product', cols, config);
     Product.associate=(model) =>{
         Product.hasMany(model.Coment,{
             as:"comentario",
-            foreingKey: "producto_id"
+            foreignKey: "product_id"
         })
         Product.belongsTo(model.User, {
             as: "usuario",

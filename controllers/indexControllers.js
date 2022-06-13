@@ -3,7 +3,9 @@ const op = db.Sequelize.Op;
 
 const controlador = {
   index: function (req, res, next) {
-    db.Product.findAll()
+    db.Product.findAll({
+      
+    })
       .then(function (products) {
         res.render('index', {
           products
@@ -30,12 +32,18 @@ const controlador = {
         }
       })
       .then(function (products) {
-        res.render('search-results', {
-          products
-        });
+        if (products.length == 0) {
+          res.render('noresult', {
+            msg: "No hay resultados de busqueda"
+          })
+        } else {
+          res.render('search-results', {
+            products
+          });
+        }
       })
       .catch(function (error) {
-        res.send(error);
+        res.send('No hay resultado de busqueda');
       });
   }
 }

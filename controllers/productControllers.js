@@ -1,7 +1,7 @@
 var db = require('../database/models');
 const controlador = {
     product:function(req,res){
-        res.render('index')
+        res.render('index', {computadoras: computadoras})
     },
     add: function (req, res, next) {
         res.render('product-add');
@@ -9,12 +9,12 @@ const controlador = {
     show: function (req, res) {
         db.Product.findByPk(req.params.id, {
                 include: [{
-                        association: 'usuario'
+                        association: 'usuarios'
                     },
                     {
-                        association: 'comentario',
+                        association: 'comentarios',
                         include: {
-                            association: 'usuario'
+                            association: 'usuarios'
                         }
                     }
                 ]
