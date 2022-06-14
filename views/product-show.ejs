@@ -7,18 +7,22 @@
 <div class="container products-wrapper">
 	<div class="row">
 		<div class="col-12">
-			<h2 class="products-title"><%= product.title %></h2>
-			<img class="img-cover" src="<%=product.photo %>">
+			<h2 class="products-title"><%= data.title%></h2>
+			<figure class="product-box_image">
+				<img class="product-detail-img" src="<%= data.photo %>">
+			</figure>
 		</div>
 		<!-- Show the "ultimos" products -->
 		<h2>Comments</h2>
-
-		<% if locals.user && user_id == product.user_id   %>
-		<form class="formularios" action="/<%= product.id %>/delete" method="post">
-			<input type="submit" value="Borrar">
-		</form>
-		<a href="/<%= product.id  %>/edit "></a>
-
+		<% if (locals.user && user.id == user.user_id) {%>
+			<a class="btn btn-primary" href="/product/<%= data.id %>/edit">Edit</a>
+			<div>
+				<form class="formularios" action="/<%= data.id %>/delete" method="post">
+					<input type="submit" value="Borrar">
+				</form>
+				
+			</div>
+		<% } %> 
 	</div>
 </div>
 <%- include('./partials/footer.ejs')%>;

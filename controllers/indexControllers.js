@@ -3,13 +3,9 @@ const op = db.Sequelize.Op;
 
 const controlador = {
   index: function (req, res, next) {
-    db.Product.findAll({
-      
-    })
+    db.Product.findAll()
       .then(function (products) {
-        res.render('index', {
-          products
-        });
+        res.render('index', {products});
       })
       .catch(function (error) {
         res.send(error);
@@ -19,14 +15,10 @@ const controlador = {
     db.Product.findAll({
         where: {
           [op.or]: [{
-              title: {
-                [op.like]: '%' + req.query.search + '%'
-              }
+              title: { [op.like]: '%' + req.query.search + '%'}
             },
             {
-              description: {
-                [op.like]: '%' + req.query.search + '%'
-              }
+              description: {[op.like]: '%' + req.query.search + '%' }
             }
           ]
         }
@@ -34,7 +26,7 @@ const controlador = {
       .then(function (products) {
         if (products.length == 0) {
           res.render('noresult', {
-            msg: "No hay resultados de busqueda"
+            msg: "No hay resultados para su criterio de busqueda"
           })
         } else {
           res.render('search-results', {
@@ -43,7 +35,7 @@ const controlador = {
         }
       })
       .catch(function (error) {
-        res.send('No hay resultado de busqueda');
+        res.send(error);
       });
   }
 }

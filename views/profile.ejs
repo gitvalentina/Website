@@ -8,23 +8,23 @@
 <section class="info-usuario container products-wrapper">
 	<div class="row">
 		<div class="img-container offset-3 col-2">
-			<img src="<%= user.user.imagen %>" alt="foto de perfil" class="foto-perfil">
+			<img src="<%= data.photo %>" alt="foto de perfil" class="foto-perfil">
 		</div>
 		<div class="data-container col-6">
 			<div class="d-flex align-items-center ">
-				<h1 class="main-title"><%= user.user.nombreDeUsuario %>
-					<a href="/users/profile-edit">
+				<h1 class="main-title"><%= data.nombre_usuario %>
+					<a href="/users/profile-edit/<% data.id %>">
 						<i class="fas fa-cog"></i>
 					</a>
 				</h1>
 				<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 			</div>
-			<div>
+			<div> 
 				<ul class="">
-					<li><%= user.user.email %></li>
-					<li>8 productos</li>
-					<li>200 seguidores</li>
-					<li>300 comentarios</li>
+					<li><%= data.email %></li>
+					<li> cant de productos</li> 
+					<li>cant de  seguidores</li>
+					<li>cant de comentarios</li>
 				</ul>
 			</div>
 		</div>
@@ -39,16 +39,16 @@
 			<h2 class="products-title">Mis productos</h2>
 		</div>
 		<!-- Show mis productos -->
-		<% for (let i= 1; i < 9; i++) { %>
+		<% for (let i= 1; i < data.producto.length; i++) { %>
 		<div class="col-12 col-sm-6 col-lg-3">
 			<section class="product-box">
 				<a href="/product">
 					<figure class="product-box_image">
-						<img class="img-cover" src="<%= user.products[i].photo %>">
+						<img class="img-cover" src="<%= data.producto[i].photo %>">
 					</figure>
 					<article class="product-box_data">
-						<h2><%= user.products[i].title %></h2>
-						<p><%= user.products[i].description %></p>
+						<h2><%= data.producto[i].title %></h2>
+						<p><%= data.producto[i].description %></p>
 						<p>Comentarios: 12</p>
 					</article>
 				</a>

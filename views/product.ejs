@@ -1,16 +1,18 @@
-<%- include('./partials/header_logueado.ejs')%>
+<% if (user) { %>
+	<%- include('./partials/header_logueado') %>
+<% } %>
 <!-- product detail -->
 <div class="container products-wrapper">
 	<div class="d-flex align-items-center">
-		<h2 class="products-title"><%= computadoras.products[1].title %></h2>
+		<h2 class="products-title"><%= product.title %></h2>
 		<p class="product-detail-description">
-			<a href="/product/add">Editar</a>
+			<a href="/product/edit">Editar</a>
 		</p>
 	</div>
 	<div class="product-detail">
 		<div class="row">
 			<article class="col-12 col-lg-8 product-detail-info">
-				<img src="<%= computadoras.products[1].photo %>" alt="" class="product-detail-img">
+				<img src="<%= product.photo %>" alt="" class="product-detail-img">
 				<p class="product-detail-description">
 					Ya sea que se encuentre en casa, en la escuela o en el trabajo, obtenga todo el rendimiento que
 					necesita con uno de los procesadores Intel más recientes; así, podrá mantener el orden y hacer que
@@ -18,13 +20,13 @@
 			</article>
 			<div class="col-12 col-lg-4">
 				<section class="comments">
-					<% for (let i = 0; i < computadoras.comments.length; i++) { %>
+					<% for (let i = 0; i < product.coments.length; i++) { %>
 					<article>
-						<img src="<%= computadoras.comments[i].photo %>" alt="">
+						<img src="<%= product.coments[i].photo %>" alt="">
 						<div class="data">
 							<p class="user">
-								<strong> <a href="/users/profile"><%= computadoras.comments[i].username%></a> </strong>
-								<%= computadoras.comments[i].content%></p>
+								<strong> <a href="/users/profile"><%= product.comments[i].nombre_usuario%></a> </strong>
+								<%= product.coments[i].content%></p>
 						</div>
 					</article>
 					<% }%>

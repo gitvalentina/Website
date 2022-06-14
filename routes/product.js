@@ -28,7 +28,7 @@ router.post('/:id/delete', controlador.delete);
 
 router.post('/:id/comment', controlador.comment);
 
-router.get('/add', controlador.add);
+router.get('/add', controlador.productAdd);
 router.post('/add', upload.single('photo'), controlador.store);
 
 module.exports = router;

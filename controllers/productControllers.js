@@ -1,71 +1,39 @@
 var db = require('../database/models');
 const controlador = {
     product:function(req,res){
-        res.render('index', {computadoras: computadoras})
+        res.render('index')
     },
-    add: function (req, res, next) {
+    productAdd: function (req, res) {
         res.render('product-add');
     },
     show: function (req, res) {
         db.Product.findByPk(req.params.id, {
-                include: [{
-                        association: 'usuarios'
-                    },
-                    {
-                        association: 'comentarios',
-                        include: {
-                            association: 'usuarios'
-                        }
-                    }
-                ]
-            })
-            .then(function (product) {
-                res.render('product-show', {
-                    product
-                });
-            })
-            .catch(function (error) {
+            includes: [{
+                association: 'usuarios'
+            }]
+        })
+        .then(function (data) {
+                res.render('product-show', { data });
+        })
+        .catch(function (error) {
                 res.send(error);
-            })
+        })
     },
     store: function (req, res) {
-        console.log(req.body);
-        if (!req.body.username) {
-            throw Error('El nombre de usuario es requerido')
-        } else if (!req.body.password || req.body.password.length < 3) {
-            throw Error('La password debe tener mas de 3 caracteres')
-        } else if (!req.photo) {
-            throw Error('La imagen es requerida')
-        } else if (!req.body.birthdate) {
-            throw Error('La fecha de nacimiento es requerida')
-        } else if (!req.body.email) {
-            throw Error('Email not provided')
-        } else {
-            db.User.findOne({
-                    where: {
-                        email: req.body.email
-                    }
-                })
-                .then(function (user) {
-                    if (user) {
-                        throw Error('Este email ya esta siendo utilizado')
-                    }
-                })
+        if(!req.session.user){
+            return res.render('product-add', {error: 'Not authorized'});
         }
-        db.User.create({
-                nombre_usuario: req.body.username,
-                contrasenia: hasher.hashSync(req.body.password, 10),
-                email: req.body.email,
-                birthdate: req.body.birthdate,
-                photo: req.body.photo
-            })
-            .then(function () {
-                res.redirect('/');
-            })
-            .catch(function (error) {
-                res.send(error);
-            })
-
+        req.body.user_id = req.session.user.id;
+       try {
+         if (!req.body.nombre) { throw Error('El producto debe tener un nombre')}
+         if (!req.body.descripcion) {throw Error('Debe tener una minima descripcion')
+         }  
+         if (!req.body.fecha) { throw Error('Fecha de carga es obligatoria')} 
+         if (req.file) req.body.photo = (req.file.path).replace('public', '');
+        }
+        catch (err) {
+             res.render('noresult', { error: err.message });
+        }
     },
 
     comment: function (req, res) {

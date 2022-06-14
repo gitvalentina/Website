@@ -23,8 +23,8 @@ router.post('/login', controlador.access);
 router.get('/register', controlador.register)
 router.post('/register', upload.single('photo'), controlador.store); //en store almacenamos
 
-router.get('/profile', controlador.profile);
-router.get('/profile', controlador.myProfile);
+router.get('/profile/:id', controlador.profile);
+router.get('/myProfile', controlador.myProfile);
 
 router.get('/profile-edit', controlador.profileEdit);
 

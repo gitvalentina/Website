@@ -184,8 +184,7 @@ hr {
   color: black;
   background-color: royalblue;
   font-family:'Courier New', Courier, monospace;
-
-  
+  text-align: center;
 }
 
 .product-box {
@@ -319,7 +318,7 @@ hr {
 }
 
 .product-detail-img {
-  width: 70%;
+  width: 40%;
   display: block;
   margin: auto;
 }
@@ -459,10 +458,6 @@ hr {
   border: solid 1px var(--gray);
   padding: 0 15px;
   font-family: 'Bebas Neue', cursive ;
-}
-.products-title{
-  text-align: center;
-  font-family: 'Courier New', Courier, monospace;
 }
 
 .formularios{
