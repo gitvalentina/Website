@@ -22,18 +22,20 @@ const controlador = {
     store: function (req, res) {
         if(!req.session.user){
             return res.render('product-add', {error: 'Not authorized'});
-        }
-        if (!req.body.nombreProducto || !req.body.descripcion || !req.body.img || !req.body.fecha ) {
+        } 
+        console.log(req.body)
+        if (!req.body.nombre || !req.body.descripcion || !req.file || !req.body.fecha ) {
             res.render('noregister', {msg: 'No puede haber campos vacios'})    
         } else{
             //guardamos en req.body.photo la ruta a la foto que el usuario se puso
-            req.body.img = (req.file.path).replace('public', '');
+            req.body.photo = (req.file.path).replace('public', '');
             //creamos el producto , guardamos sus datos en la base
             db.Product.create({
-                nombreProducto: req.body.nombre,                
-                descripcion: req.body.descripcion,
-                fecha: req.body.fecha,
-                photo: req.body.img
+                user_id: req.session.user.id,
+                title: req.body.nombre,                
+                description: req.body.descripcion,
+                createdAt: req.body.fecha,
+                photo: req.body.photo
             })
             .then(function () {
                 res.redirect('/');
@@ -41,7 +43,8 @@ const controlador = {
             .catch(function (error) {
                 res.send(error);
             })
-        }   
+        }
+        
     },
 
     comment: function (req, res) {

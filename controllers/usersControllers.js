@@ -110,7 +110,7 @@ const controlador = {
     })
   },
   profileEdit: function (req, res) {
-    res.render('profile-edit');
+    res.render('profile-edit', {user: req.session.user});
   }
 }
 
