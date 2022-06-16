@@ -1,0 +1,32 @@
+<% if (user) { %>
+	<%- include('./partials/header_logueado') %>
+	<% } else{ %>
+	<%- include('./partials/header') %>
+	<%} %>
+<body>
+    <div class="container products-wrapper">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="products-title">Agregar producto</h2>
+            </div>
+            <form action="/products/<%=producto.user %>/edit/post" method="post" class="formularios" enctype="multipart/form-data">
+                <div>
+                    <label for="">Nombre del producto</label>
+                    <input type="text" name="nombre" id="nombre">
+                </div> <br>
+                <div>
+                    <label>Descripcion</label>
+                    <input type="text" name="descripcion" id="descripcion">
+                </div> <br>
+                <div>
+                    <label>Fecha de carga</label>
+                    <input type="date" name="fecha" id="fecha">
+                </div> 
+                <button type="submit">Guardar y Continuar</button>
+            </form>
+
+        </div>
+    </div>
+</body>
+
+<%- include('./partials/footer.ejs')%>;

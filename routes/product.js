@@ -16,6 +16,9 @@ let upload = multer({
 
 
 /* GET home page. */ //Usamos metodo. get porque queremos mostrar la vista o formulario //
+router.get('/add', controlador.productAdd);
+router.post('/add', upload.single('img'), controlador.store);
+
 router.get('/', controlador.product);
 
 router.get('/:id', controlador.show);
@@ -28,7 +31,6 @@ router.post('/:id/delete', controlador.delete);
 
 router.post('/:id/comment', controlador.comment);
 
-router.get('/add', controlador.productAdd);
-router.post('/add', upload.single('photo'), controlador.store);
+
 
 module.exports = router;

@@ -23,17 +23,25 @@ const controlador = {
         if(!req.session.user){
             return res.render('product-add', {error: 'Not authorized'});
         }
-        req.body.user_id = req.session.user.id;
-       try {
-         if (!req.body.nombre) { throw Error('El producto debe tener un nombre')}
-         if (!req.body.descripcion) {throw Error('Debe tener una minima descripcion')
-         }  
-         if (!req.body.fecha) { throw Error('Fecha de carga es obligatoria')} 
-         if (req.file) req.body.photo = (req.file.path).replace('public', '');
-        }
-        catch (err) {
-             res.render('noresult', { error: err.message });
-        }
+        if (!req.body.nombreProducto || !req.body.descripcion || !req.body.img || !req.body.fecha ) {
+            res.render('noregister', {msg: 'No puede haber campos vacios'})    
+        } else{
+            //guardamos en req.body.photo la ruta a la foto que el usuario se puso
+            req.body.img = (req.file.path).replace('public', '');
+            //creamos el producto , guardamos sus datos en la base
+            db.Product.create({
+                nombreProducto: req.body.nombre,                
+                descripcion: req.body.descripcion,
+                fecha: req.body.fecha,
+                photo: req.body.img
+            })
+            .then(function () {
+                res.redirect('/');
+            })
+            .catch(function (error) {
+                res.send(error);
+            })
+        }   
     },
 
     comment: function (req, res) {
