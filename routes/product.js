@@ -4,7 +4,7 @@ var controlador = require('../controllers/productControllers');
 var multer = require('multer');
 const path = require('path');
 let storage = multer.diskStorage({
-    destination: path.join(__dirname, '../public/images'),
+    destination: path.join(__dirname, '../public/images/products'),
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
