@@ -62,14 +62,14 @@ const controlador = {
         res.render('noregister', {msg: 'Este email ya esta registrado'})
       } else{
         //guardamos en req.body.photo la ruta a la foto que el usuario se puso
-        req.body.photo = (req.file.path).replace('public', '');
+        //req.body.photo = (req.file.path).replace('public', '');
         //creamos el usuario , guardamos sus datos en la base
         db.User.create({
           nombre_usuario: req.body.username,
           contrasenia: hasher.hashSync(req.body.password, 10),
           email: req.body.email,
           birthdate: req.body.birthdate,
-          photo: req.body.photo
+          photo: '/images/users/'+req.file.filename,
         })
         .then(function () {
           res.redirect('/');
@@ -86,11 +86,11 @@ const controlador = {
   myProfile: function (req, res) {
     db.User.findByPk(req.session.user.id, {
       include: [{ association: 'producto' },
-        { association: 'comentario' }
+       { association: 'comentario' }
       ]
     })
     .then(data => {
-      res.render('profile', { data });
+    res.render('profile', { data });
     })
     .catch (function(error){
       res.send(error)

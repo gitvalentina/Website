@@ -27,14 +27,14 @@ const controlador = {
             res.render('noregister', {msg: 'No puede haber campos vacios'})    
         } else{
             //guardamos en req.body.photo la ruta a la foto que el usuario se puso
-            req.body.photo = (req.file.path).replace('public', '');
+            //req.body.photo = (req.file.path).replace('public', '');
             //creamos el producto , guardamos sus datos en la base
             db.Product.create({
                 user_id: req.session.user.id,
                 title: req.body.nombre,                
                 description: req.body.descripcion,
                 createdAt: req.body.fecha,
-                photo: req.body.photo
+                photo:'/images/products/'+ req.file.filename,
             })
             .then(function () {
                 res.redirect('/');
