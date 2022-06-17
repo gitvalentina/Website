@@ -14,11 +14,11 @@
 		</div>
 		<!-- Show the "ultimos" products -->
 		<h2>Comments</h2>
-		<% if (locals.user && user.id == user.user_id) {%>
-			<a class="btn btn-primary" href="/product/<%= data.id %>/edit">Edit</a>
+		<% if (user) {%>
+			<a class="btn btn-primary" href="/product/<%= data.id %>/edit"> Editar </a>
 			<div>
 				<form class="formularios" action="/<%= data.id %>/delete" method="post">
-					<input type="submit" value="Borrar">
+					<input class="btn btn-primary" type="submit" value="Borrar">
 				</form>
 				
 			</div>

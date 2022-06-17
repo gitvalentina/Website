@@ -23,7 +23,6 @@ const controlador = {
         if(!req.session.user){
             return res.render('product-add', {error: 'Not authorized'});
         } 
-        console.log(req.body)
         if (!req.body.nombre || !req.body.descripcion || !req.file || !req.body.fecha ) {
             res.render('noregister', {msg: 'No puede haber campos vacios'})    
         } else{
@@ -56,11 +55,11 @@ const controlador = {
         // set book from url params
         req.body.product_id = req.params.id;
         db.Coment.create({
-                comentario: req.body.comentario,
-                productId: req.params.id,
-                user_id: req.session.user.id
-            }).then(function (product) {
-                res.redirect('/products/:id/' + req.params.id);
+                content: req.body.comentario,
+                productId: req.body.idProducto,
+                user_id: req.body.id
+            }).then(function (comentario) {
+                res.redirect(`/products/:id/${comentario.product_id}`);
             })
             .catch(function (error) {
                 res.send(error);
@@ -85,22 +84,32 @@ const controlador = {
             })
     },
     update: function (req, res) {
-        db.Product.update(req.body, {
-                where: {
-                    id: req.params.id
-                }
-            })
-            .then(function () {
-                res.redirect('/');
-            })
-            .catch(function (error) {
-                res.send(error);
-            })
+        db.Product.update({
+            user_id: req.session.user.id,
+            title: req.body.nombre,                
+            description: req.body.descripcion,
+            createdAt: req.body.fecha
+        },{where:{id: req.body.product_id}
+        })
+        .then(function () {
+             res.redirect(`/products/${product_id}>`);
+        })
+        .catch(function (error) {
+            res.send(error);
+        })
     },
+    // Editar un producto en funcion del id
     edit: function (req, res) {
-        res.render('product-edit')
+        if(!req.session.user){
+            return res.render('product-edit', {error: 'Not authorized'});
+        } else{ db.Product.findOne({
+            where:[{id: req.params.id, userAdded: req.session.user.id}]
+        }) .then(function(producto){
+            if(producto != null){
+                res.render('product-edit', {producto, id})
+            } else{ res.redirect('/')}
+        })}  
     }
-
 }
 
 
