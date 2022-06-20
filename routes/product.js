@@ -26,8 +26,6 @@ router.get('/:id', controlador.show);
 router.get('/:id/edit', controlador.edit);
 router.post('/:id/edit', controlador.update)
 
-
-router.get('/delete', controlador.delete);
 router.post('/:id/delete', controlador.delete);
 
 router.post('/:id/comment', controlador.comment);

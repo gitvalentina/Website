@@ -17,7 +17,7 @@
 		<% if (user) {%>
 			<a class="btn btn-primary" href="/product/<%= data.id %>/edit"> Editar </a>
 			<div>
-				<form class="formularios" action="/<%= data.id %>/delete" method="post">
+				<form class="formularios" action="/products/<%= data.id %>/delete" method="post">
 					<input class="btn btn-primary" type="submit" value="Borrar">
 				</form>
 				

@@ -83,13 +83,25 @@ const controlador = {
                 res.send(error);
             })
     },
+    // Editar un producto en funcion del id
+    edit: function (req, res) {
+        if(!req.session.user){
+            return res.render('product-edit', {error: 'Not authorized'});
+        } else{ db.Product.findByPk(req.params.id)
+         .then(function(producto){
+            if(producto != null){
+                res.render('product-edit', {producto})
+            } else{ res.redirect('/')}
+        })}  
+    },
+    //ruta post al editar el producto
     update: function (req, res) {
         db.Product.update({
             user_id: req.session.user.id,
             title: req.body.nombre,                
             description: req.body.descripcion,
             createdAt: req.body.fecha
-        },{where:{id: req.body.product_id}
+        },{where:{id: req.params.product_id}
         })
         .then(function () {
              res.redirect(`/products/${product_id}>`);
@@ -98,18 +110,6 @@ const controlador = {
             res.send(error);
         })
     },
-    // Editar un producto en funcion del id
-    edit: function (req, res) {
-        if(!req.session.user){
-            return res.render('product-edit', {error: 'Not authorized'});
-        } else{ db.Product.findOne({
-            where:[{id: req.params.id, userAdded: req.session.user.id}]
-        }) .then(function(producto){
-            if(producto != null){
-                res.render('product-edit', {producto, id})
-            } else{ res.redirect('/')}
-        })}  
-    }
 }
 
 

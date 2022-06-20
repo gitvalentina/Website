@@ -10,7 +10,6 @@ let storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
 })
-
 let upload = multer({
     storage: storage
 })
@@ -26,8 +25,9 @@ router.post('/register', upload.single('photo'), controlador.store); //en store 
 router.get('/profile/:id', controlador.profile);
 router.get('/myProfile', controlador.myProfile);
 
-router.get('/profile-edit', controlador.profileEdit);
+router.get('/profile-edit/:id', controlador.profileEdit);
+router.post('/profile-edit/:id', upload.single('photo'), controlador.editPost);
 
-router.get('/logout', controlador.logout);
+router.post('/logout', controlador.logout);
 
 module.exports = router;

@@ -61,15 +61,13 @@ const controlador = {
       if(user){
         res.render('noregister', {msg: 'Este email ya esta registrado'})
       } else{
-        //guardamos en req.body.photo la ruta a la foto que el usuario se puso
-        //req.body.photo = (req.file.path).replace('public', '');
         //creamos el usuario , guardamos sus datos en la base
         db.User.create({
           nombre_usuario: req.body.username,
           contrasenia: hasher.hashSync(req.body.password, 10),
           email: req.body.email,
           birthdate: req.body.birthdate,
-          photo: '/images/users/'+req.file.filename,
+          photo: '/images/users/'+ req.file.filename,
         })
         .then(function () {
           res.redirect('/');
@@ -85,9 +83,7 @@ const controlador = {
 
   myProfile: function (req, res) {
     db.User.findByPk(req.session.user.id, {
-      include: [{ association: 'producto' },
-       { association: 'comentario' }
-      ]
+      include: [{ all: true, nested: true }]
     })
     .then(data => {
     res.render('profile', { data });
@@ -97,21 +93,66 @@ const controlador = {
     })
   },
   profile: function (req, res) {
+    if(req.session.user){
+      if(req.session.user.id == req.params.id){res.redirect('/myProfile')}
+    }
     db.User.findByPk(req.params.id, {
-    include: [{ association: 'producto'} ]})
+    include: [{all: true, nested: false} ]})
     .then(function(data) {
-      res.render('profile', {          
-        //le mando la info al render con data 
-        data
-      });
+      db.Product.findAll({
+        where:[{user_id: req.params.id}],
+        include:{all: true, nested: false}
+      }) .then(function(products){
+        res.render('profile', {          
+          //le mando la info al render con data y products
+          data, products
+        });
+
+      })
+      
     })
     .catch(function(error){
       res.send(error)
     })
   },
   profileEdit: function (req, res) {
-    res.render('profile-edit', {user: req.session.user});
-  }
+    res.render('profile-edit')    
+  },
+  editPost:function (req, res) {
+    //verifico que llene todos los campos 
+    if (!req.body.email || !req.body.username || !req.body.password || !req.body.birthdate || !req.file) {
+      res.render('noregister', {msg: 'No puede haber campos vacios'})    
+    }
+    if (req.body.password.length < 4) {
+      res.render('noregister', {msg: 'Password too short'})  
+    }
+    // verifico que el email no este repetido
+    db.User.findOne({
+      where:{
+        email: req.body.email
+      }
+    })
+    .then(function(user){
+      if(user){
+        res.render('noregister', {msg: 'Este email ya esta registrado'})
+      } else{
+      //creamos el usuario , guardamos sus datos en la base
+      db.User.update({
+        nombre_usuario: req.body.username,
+        contrasenia: hasher.hashSync(req.body.password, 10),
+        email: req.body.email,
+        birthdate: req.body.birthdate,
+        photo: '/images/users/'+req.file.filename,
+      })
+      .then(function () {
+        res.redirect('/');
+      })
+      .catch(function (error) {
+        res.send(error);
+      })
+    }
+  })}
+
 }
 
 module.exports = controlador;
