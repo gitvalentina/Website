@@ -7,10 +7,9 @@ const controlador = {
         res.render('product-add');
     },
     show: function (req, res) {
-        db.Product.findByPk(req.params.id, {
-            includes: [{
-                association: 'usuarios'
-            }]
+        db.Product.findByPk(req.params.id,{
+            include: [{association:"comentario",  
+            include: {association: "usuario"}}, {association:"usuario"}]
         })
         .then(function (data) {
                 res.render('product-show', { data });
@@ -56,10 +55,10 @@ const controlador = {
         req.body.product_id = req.params.id;
         db.Coment.create({
                 content: req.body.comentario,
-                productId: req.body.idProducto,
-                user_id: req.body.id
+                product_id: req.params.id,
+                user_id: req.body.userid
             }).then(function (comentario) {
-                res.redirect(`/products/:id/${comentario.product_id}`);
+                res.redirect(`/product/${req.params.id}`);
             })
             .catch(function (error) {
                 res.send(error);

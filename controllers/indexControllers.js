@@ -3,7 +3,9 @@ const op = db.Sequelize.Op;
 
 const controlador = {
   index: function (req, res, next) {
-    db.Product.findAll()
+    db.Product.findAll({
+      include: [{all: true, nested: false} ]
+  })
       .then(function (products) {
         res.render('index', {products});
       })

@@ -86,6 +86,7 @@ const controlador = {
       include: [{ all: true, nested: true }]
     })
     .then(data => {
+      
     res.render('profile', { data });
     })
     .catch (function(error){

@@ -35,11 +35,11 @@ CREATE TABLE comentarios(
     updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
  
-insert into usuarios values (default, 'Maxi Sucari','maxisucari@gmail.com','maxisucari','2001-08-01','perfil-1.png',DEFAULT, DEFAULT);
-insert into usuarios values (default, 'Guido Reblon','guidoreblon@gmail.com','guidoreblon','2021-02-10','perfil-2.png',DEFAULT, DEFAULT);
-insert into usuarios values (default, 'Micaela Gomez','micaelagomez@gmail.com','micaelagomez','2021-03-10','perfil-3.png',DEFAULT, DEFAULT);
-insert into usuarios values (default, 'Santi Mendez','santimendez@gmail.com','santimendez','2021-04-10','perfil-4.png',DEFAULT, DEFAULT);
-insert into usuarios values (default, 'Clarisa Ocampo','clariocampo@gmail.com','clariocampo','2021-04-10','perfil-5.png',DEFAULT, DEFAULT);
+insert into usuarios values (default, 'Maxi Sucari','maxisucari@gmail.com','maxisucari','2001-08-01','/images/users/perfil-1.png',DEFAULT, DEFAULT);
+insert into usuarios values (default, 'Guido Reblon','guidoreblon@gmail.com','guidoreblon','2021-02-10','/images/users/perfil-2.png',DEFAULT, DEFAULT);
+insert into usuarios values (default, 'Micaela Gomez','micaelagomez@gmail.com','micaelagomez','2021-03-10','/images/users/perfil-3.png',DEFAULT, DEFAULT);
+insert into usuarios values (default, 'Santi Mendez','santimendez@gmail.com','santimendez','2021-04-10','/images/users/perfil-4.png',DEFAULT, DEFAULT);
+insert into usuarios values (default, 'Clarisa Ocampo','clariocampo@gmail.com','clariocampo','2021-04-10','/images/users/perfil-5.png',DEFAULT, DEFAULT);
 select*from usuarios;
 
 insert into productos  values (default, 'Acer Aspire 5','Intel core i5, 32gb RAM, Nvidia gtx 1050','/images/products/AcerAspire5.jpg','3',DEFAULT, DEFAULT);
