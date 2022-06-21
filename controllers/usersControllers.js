@@ -137,7 +137,8 @@ const controlador = {
           if (req.body.email) req.body.email = req.body.email;
           if (req.body.password) req.body.contrasenia = hasher.hashSync(req.body.password, 10);
           if (req.body.birthdate) req.body.birthdate = req.body.birthdate;
-          if (req.file) req.body.photo = '/images/users/' + req.file.filename,
+          if (req.file) req.body.photo = '/images/users/' + req.file.filename;
+          req.body.updatedAt = Date.now();
             //actualizamos el usuario , guardamos sus datos en la base
             db.User.update(req.body, { where: { id: req.session.user.id } })
               .then(function () {

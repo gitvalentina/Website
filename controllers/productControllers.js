@@ -8,7 +8,7 @@ const controlador = {
     },
     show: function (req, res) {
         db.Product.findByPk(req.params.id,{
-            include: [{association:"comentario",  
+            include: [{association:"comentario",   
             include: {association: "usuario"}}, {association:"usuario"}]
         })
         .then(function (data) {
@@ -101,6 +101,7 @@ const controlador = {
             if(req.body.nombre) req.body.title = req.body.nombre;
             if (req.body.descripcion) req.body.description = req.body.descripcion;
             if (req.body.fecha) req.body.createdAt = req.body.fecha;
+            req.body.updatedAt = Date.now();
             db.Product.update(req.body,{where:{id: req.params.id}
             })
             .then(function () {
