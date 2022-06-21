@@ -28,6 +28,22 @@
 			</section>
 		</div>
 		<% } %>
+		<% for (let i= 0; i < users.length; i++) { %>
+			<div class="col-12 col-sm-6 col-lg-3">
+				<section class="product-box">
+					<a href="/users/profile/ <%= users[i].id%>">
+						<figure class="product-box_image">
+							<img class="img-cover" src="<%=users[i].photo %>">
+						</figure>
+						<article class="product-box_data">
+							<h2><%=users[i].nombre_usuario %></h2>
+							<p><%=users[i].email %></p>
+							<p>Productos: <%= users[i].producto.length %> </p>							
+						</article>
+					</a>
+				</section>
+			</div>
+			<% } %>
 	</div>
 </div>
 

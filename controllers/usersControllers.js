@@ -95,7 +95,7 @@ const controlador = {
   },
   profile: function (req, res) {
     if (req.session.user) {
-      if (req.session.user.id == req.params.id) { res.redirect('/myProfile') }
+      if (req.session.user.id == req.params.id) { res.redirect('/users/myProfile') }
     }
     db.User.findByPk(req.params.id, {
       include: [{ all: true, nested: true }]
@@ -129,7 +129,8 @@ const controlador = {
       }
     })
       .then(function (email) {
-        if (email.email == req.body.email && email.id != req.session.user.id) {
+        console.log(email)
+        if (email && email.id != req.session.user.id) {
           res.render('noregister', { msg: 'Este email ya esta registrado' })
         } else {
           if (req.body.username) req.body.nombre_usuario = req.body.username;
