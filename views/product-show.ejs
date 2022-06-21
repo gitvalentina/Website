@@ -3,26 +3,53 @@
 	<% } else{ %>
 	<%- include('./partials/header') %>
 	<%} %>
-<!-- Novedades -->
+<!-- product detail -->
 <div class="container products-wrapper">
-	<div class="row">
-		<div class="col-12">
-			<h2 class="products-title"><%= data.title%></h2>
-			<figure class="product-box_image">
-				<img class="product-detail-img" src="<%= data.photo %>">
-			</figure>
-		</div>
-		<!-- Show the "ultimos" products -->
-		<h2>Comments</h2>
-		<% if (user) {%>
-			<a class="btn btn-primary" href="/product/<%= data.id %>/edit"> Editar </a>
-			<div>
-				<form class="formularios" action="/products/<%= data.id %>/delete" method="post">
-					<input class="btn btn-primary" type="submit" value="Borrar">
-				</form>
-				
-			</div>
-		<% } %> 
+	<div class="d-flex align-items-center">
+		<h2 class="products-title"><%= data.title %></h2>
+		<p class="product-detail-description">
+			<% if (user) {%>
+				<a class="btn mt-3 ml-4"   href="/product/<%= data.id %>/edit"> Editar </a>
+				<div>
+					<form  action="/product/<%= data.id %>/delete" method="post">
+					<input class="btn mt-3 ml-4" type="submit" value="Borrar">	
+					</form>
+					
+				</div>
+			<% } %> 
+		</p>
 	</div>
-</div>
-<%- include('./partials/footer.ejs')%>;
+	<div class="product-detail">
+		<div class="row">
+			<article class="col-12 col-lg-8 product-detail-info">
+				<img src="<%= data.photo %>" alt="" class="product-detail-img">
+				<p class="product-detail-description"><strong>Descripcion:</strong><%= data.description%></p>
+			</article>
+		<div class="col-12 col-lg-4">
+			<section class="comments">
+				<% for (let i = 0; i < data.comentario.length; i++) { %>
+				<article>
+					<img src="<%= data.comentario[i].user.photo %>" alt="">
+					<div class="data">
+					<p class="user">
+					<strong> <a href="/users/profile/<%= user.id %> "></a> </strong>
+								<%= data.comentario[i].content%></p>
+						</div>
+					</article>
+					<% }%>
+				</section>
+				<form class="form" action="/product/<%= data.id %>/comment " method="post">
+					<input class="form-input" name="comentario" type="text" placeholder="Agregar comentario">
+					<%if(user) {%>
+					<input class="none" name="id" type="number" value="<%=req.session.user.id%>">
+					<%  }%>
+					<input class="none" name="idProducto" type="number" value="<%=product[0].id%>">
+					<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+				</form>
+				<hr>
+			</div>
+		</div>
+	</div>
+	<!-- /product detail -->
+
+	<%- include('./partials/footer.ejs')%>;
