@@ -11,7 +11,6 @@
   --light-gray: #ebebeb;
   --green: #39b54a;
   --base-font-family: 'Bebas Neue', cursive;
-   
 }
 
 
@@ -53,13 +52,6 @@ figure {
 
 img {
   width: 100%;
-}
-
-input,
-textarea {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  font-style: italic;
-  
 }
 
 hr {
@@ -396,7 +388,9 @@ hr {
   border-radius: 8px;
   border: none;
   margin-bottom: 15px;
-  font-family: 'Bebas Neue', cursive ;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  cursor:pointer;
+
 }
 
 .action-button {
@@ -408,13 +402,9 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 15px 30px;
   cursor: pointer;
 }
 
-.action-button.edit {
-  background-color: chocolate;
-}
 .action-button.delete {
   background-color: rgb(248, 69, 37);
 }
@@ -470,7 +460,6 @@ hr {
   border: none;
   border: solid 1px var(--gray);
   padding: 0 15px;
-  font-family: 'Bebas Neue', cursive ;
 }
 
 .formularios{
@@ -478,6 +467,7 @@ hr {
 }
 input{
   width: 100%;
+  height: 30px;
 }
 .error{
   color: rgb(209, 0, 0);
