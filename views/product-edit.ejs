@@ -11,15 +11,15 @@
             </div>
             <form action="/product/<%=producto.id %>/edit" method="post" class="formularios" >
                 <div>
-                    <label for="">Nombre del producto</label>
+                    <label class="campos" for="">Nombre del producto</label>
                     <input type="text" name="nombre" id="nombre" value="<%= producto.title%>">
                 </div> <br>
                 <div>
-                    <label>Descripcion</label>
+                    <label class="campos">Descripcion</label>
                     <input type="text" name="descripcion" id="descripcion" value="<%= producto.description%>">
                 </div> <br>
                 <div>
-                    <label>Fecha de carga</label>
+                    <label class="campos">Fecha de carga</label>
                     <input type="date" name="fecha" id="fecha" value="<%= producto.created%>">
                 </div> 
                 <button type="submit">Guardar y Continuar</button>

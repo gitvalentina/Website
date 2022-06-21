@@ -27,7 +27,7 @@ body {
 }
 
 body {
-  font-family: 'Bebas Neue', cursive ;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: 300;
   background-color: var(--light-gray);
 }
@@ -135,7 +135,7 @@ hr {
   font-size: 1em;
   color: rgb(15, 39, 111);
   text-decoration: solid;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .logout:hover{
@@ -175,7 +175,7 @@ hr {
   font-weight: 400;
   color: black;
   background-color: royalblue;
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: center;
 }
 
@@ -286,7 +286,7 @@ hr {
 
 .footer-data h2 {
   color: var(--gray);
-  font-size: 2.4em;
+  font-size: 1.5em;
   font-weight: 200;
 }
 
@@ -316,27 +316,33 @@ hr {
 }
 
 .product-detail-img {
-  width: 40%;
+  width: 70%;
   display: block;
-  margin: auto;
 }
 
 .product-detail-info {
   border-right: 1px solid var(--light-gray);
   padding: 15px;
-  /* height: 100%; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+    
 }
 
 .product-detail-title {
-  font-weight: 400;
-  font-size: 2.8em;
-  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  font-size: 6em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .product-detail-description {
-  padding: 15px 15px 15px 40px;
+  
   font-size: 1.8em;
-  line-height: 1.5;
+  line-height: 1;
+  padding-left: 15px;
+  padding-top: 50px;
+  justify-content:  space-around;
 }
 
 .product-detail-price {
@@ -388,7 +394,7 @@ hr {
   border-radius: 8px;
   border: none;
   margin-bottom: 15px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:'Courier New', Courier, monospace;
   cursor:pointer;
 
 }
@@ -445,9 +451,12 @@ hr {
 
 .form-label {
   display: inline-block;
-  font-size: 1.6em;
   margin: 10px 0;
   
+}
+
+.campos{
+  font-size: 20px;
 }
 
 .form-input {
@@ -487,7 +496,7 @@ div.mb-3{
 .info-usuario{
   border-bottom: 1px solid #ccc;
   padding-bottom: 30px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .foto-perfil{
@@ -495,7 +504,8 @@ div.mb-3{
 }
 
 .main-title{
-  font-size: 25px;
+  font-size: 30px;
+  text-align: center;
   margin-bottom: 10px;
   font-family: 'Courier New', Courier, monospace;
 }
