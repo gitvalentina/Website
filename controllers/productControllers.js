@@ -96,19 +96,21 @@ const controlador = {
     },
     //ruta post al editar el producto
     update: function (req, res) {
-        db.Product.update({
-            user_id: req.session.user.id,
-            title: req.body.nombre,                
-            description: req.body.descripcion,
-            createdAt: req.body.fecha
-        },{where:{id: req.params.product_id}
-        })
-        .then(function () {
-             res.redirect(`/products/${product_id}>`);
-        })
-        .catch(function (error) {
-            res.send(error);
-        })
+        if (!req.body.nombre || !req.body.descripcion || !req.body.fecha ) {
+            res.render('noregister', {msg: 'No puede haber campos vacios'})    
+        } else {
+            if(req.body.nombre) req.body.title = req.body.nombre;
+            if (req.body.descripcion) req.body.description = req.body.descripcion;
+            if (req.body.fecha) req.body.createdAt = req.body.fecha;
+            db.Product.update(req.body,{where:{id: req.params.id}
+            })
+            .then(function () {
+                 res.redirect("/");
+            })
+            .catch(function (error) {
+                res.send(error);
+            })
+        }
     },
 }
 

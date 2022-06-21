@@ -120,9 +120,6 @@ const controlador = {
   },
   editPost:function (req, res) {
     //verifico que llene todos los campos 
-    if (!req.body.email || !req.body.username || !req.body.password || !req.body.birthdate || !req.file) {
-      res.render('noregister', {msg: 'No puede haber campos vacios'})    
-    }
     if (req.body.password.length < 4) {
       res.render('noregister', {msg: 'Password too short'})  
     }
@@ -133,26 +130,25 @@ const controlador = {
       }
     })
     .then(function(user){
-      if(user){
+      if(user.email == req.body.email && user.id != req.session.user.id){
         res.render('noregister', {msg: 'Este email ya esta registrado'})
       } else{
-      //creamos el usuario , guardamos sus datos en la base
-      db.User.update({
-        nombre_usuario: req.body.username,
-        contrasenia: hasher.hashSync(req.body.password, 10),
-        email: req.body.email,
-        birthdate: req.body.birthdate,
-        photo: '/images/users/'+req.file.filename,
-      })
-      .then(function () {
-        res.redirect('/');
-      })
-      .catch(function (error) {
-        res.send(error);
-      })
-    }
-  })}
-
+        if(req.body.username) req.body.nombre_usuario = req.body.username;
+        if(req.body.email) req.body.email = req.body.email;
+        if (req.body.password) req.body.contrasenia = hasher.hashSync(req.body.password, 10);
+        if (req.body.birthdate) req.body.birthdate = req.body.birthdate;
+        if(req.file) req.body.photo = '/images/users/'+req.file.filename,
+        //creamos el usuario , guardamos sus datos en la base
+        db.User.update(req.body,{where: {id: req.session.user.id}})     
+        .then(function () {
+          res.redirect('/');
+        })
+        .catch(function (error) {
+          res.send(error);
+        })
+      }
+    })
+  }
 }
 
 module.exports = controlador;
