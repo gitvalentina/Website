@@ -22,7 +22,7 @@ const controlador = {
         if(!req.session.user){
             return res.render('product-add', {error: 'Not authorized'});
         } 
-        if (!req.body.nombre || !req.body.descripcion || !req.file || !req.body.fecha ) {
+        if (!req.body.nombre || !req.body.descripcion || !req.file  ) {
             res.render('noregister', {msg: 'No puede haber campos vacios'})    
         } else{
             //guardamos en req.body.photo la ruta a la foto que el usuario se puso
@@ -32,7 +32,7 @@ const controlador = {
                 user_id: req.session.user.id,
                 title: req.body.nombre,                
                 description: req.body.descripcion,
-                createdAt: req.body.fecha,
+                createdAt: Date.now(),
                 photo:'/images/products/'+ req.file.filename,
             })
             .then(function () {
@@ -53,6 +53,7 @@ const controlador = {
         req.body.user_id = req.session.user.id;
         // set book from url params
         req.body.product_id = req.params.id;
+        req.body.createdAt = Date.now();
         db.Coment.create({
                 content: req.body.comentario,
                 product_id: req.params.id,
@@ -95,12 +96,9 @@ const controlador = {
     },
     //ruta post al editar el producto
     update: function (req, res) {
-        if (!req.body.nombre || !req.body.descripcion || !req.body.fecha ) {
-            res.render('noregister', {msg: 'No puede haber campos vacios'})    
-        } else {
             if(req.body.nombre) req.body.title = req.body.nombre;
             if (req.body.descripcion) req.body.description = req.body.descripcion;
-            if (req.body.fecha) req.body.createdAt = req.body.fecha;
+            if (req.body.file) req.body.photo = '/images/products/'+ req.file.filename;
             req.body.updatedAt = Date.now();
             db.Product.update(req.body,{where:{id: req.params.id}
             })
@@ -110,8 +108,7 @@ const controlador = {
             .catch(function (error) {
                 res.send(error);
             })
-        }
-    },
+        },
 }
 
 

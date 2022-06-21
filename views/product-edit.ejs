@@ -9,7 +9,7 @@
             <div class="col-12">
                 <h2 class="products-title">Editar producto</h2>
             </div>
-            <form action="/product/<%=producto.id %>/edit" method="post" class="formularios" >
+            <form action="/product/<%=producto.id %>/edit" method="post" class="formularios"  enctype="multipart/form-data">
                 <div>
                     <label class="campos" for="">Nombre del producto</label>
                     <input type="text" name="nombre" id="nombre" value="<%= producto.title%>">
@@ -19,9 +19,9 @@
                     <input type="text" name="descripcion" id="descripcion" value="<%= producto.description%>">
                 </div> <br>
                 <div>
-                    <label class="campos">Fecha de carga</label>
-                    <input type="date" name="fecha" id="fecha" value="<%= producto.created%>">
-                </div> 
+                    <label class="campos" for="">Imagen</label>
+                    <input type="file" name="photo" id="img">
+                </div> <br>
                 <button type="submit">Guardar y Continuar</button>
             </form>
 

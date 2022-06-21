@@ -68,6 +68,7 @@ const controlador = {
             email: req.body.email,
             birthdate: req.body.birthdate,
             photo: '/images/users/' + req.file.filename,
+            createdAt: Date.now()
           })
             .then(function () {
               res.redirect('/');
@@ -103,12 +104,9 @@ const controlador = {
       .then(function (data) {
 
         res.render('profile', {
-          //le mando la info al render con data y products
-          data,
+          //le mando la info al render con data 
+          data
         });
-
-
-
       })
       .catch(function (error) {
         res.send(error)
@@ -118,10 +116,6 @@ const controlador = {
     res.render('profile-edit')
   },
   editPost: function (req, res) {
-    //verifico que  
-    if (req.body.password.length < 4) {
-      res.render('noregister', { msg: 'Password too short' })
-    }
     // verifico que el email no este repetido
     db.User.findOne({
       where: {
@@ -129,25 +123,28 @@ const controlador = {
       }
     })
       .then(function (email) {
-        console.log(email)
         if (email && email.id != req.session.user.id) {
           res.render('noregister', { msg: 'Este email ya esta registrado' })
         } else {
-          if (req.body.username) req.body.nombre_usuario = req.body.username;
-          if (req.body.email) req.body.email = req.body.email;
-          if (req.body.password) req.body.contrasenia = hasher.hashSync(req.body.password, 10);
-          if (req.body.birthdate) req.body.birthdate = req.body.birthdate;
-          if (req.file) req.body.photo = '/images/users/' + req.file.filename;
-          req.body.updatedAt = Date.now();
-            //actualizamos el usuario , guardamos sus datos en la base
-            db.User.update(req.body, { where: { id: req.session.user.id } })
-              .then(function () {
-                res.redirect('/');
-              })
-              .catch(function (error) {
-                res.send(error);
-              })
-        }
+            if (req.body.password) {
+              req.body.contrasenia = hasher.hashSync(req.body.password, 10)
+            } else {
+              req.body.contrasenia = undefined;
+              if (req.body.username) req.body.nombre_usuario = req.body.username;
+              if (req.body.email) req.body.email = req.body.email;
+              if (req.body.birthdate) req.body.birthdate = req.body.birthdate;
+              if (req.file) req.body.photo = '/images/users/' + req.file.filename;
+              req.body.updatedAt = Date.now();
+              //actualizamos el usuario , guardamos sus datos en la base
+              db.User.update(req.body, { where: { id: req.session.user.id } })
+                .then(function () {
+                  res.redirect('/');
+                })
+                .catch(function (error) {
+                  res.send(error);
+                })
+            }
+          }  
       })
   }
 }
