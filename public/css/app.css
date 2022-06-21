@@ -252,6 +252,12 @@ hr {
   transition: 300ms;
 }
 
+.show-products{
+  display: flex;
+  margin-bottom: 10px;
+  justify-content:flex-end;
+}
+
 .noproducts {
   text-align: center
 }
@@ -398,11 +404,12 @@ hr {
   border-radius: 8px;
   font-size: 1.2em;
   color: #ffffff;
-  display: inline-flex;
+  background-color: #1259c3;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: 15px 30px;
-  margin-top: 15px;
+  cursor: pointer;
 }
 
 .action-button.edit {
@@ -439,6 +446,13 @@ hr {
 }
 
 /*====== Formularios ======*/
+.edit-delete{
+  width: 12%;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
 .form-label {
   display: inline-block;
   font-size: 1.6em;
@@ -451,7 +465,6 @@ hr {
   align-items: flex-end;
   width: 100%;
   height: 45px;
-  margin-bottom: 15px;
   font-size: 1.5em;
   border-radius: 8px;
   border: none;

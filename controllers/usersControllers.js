@@ -120,7 +120,7 @@ const controlador = {
     res.render('profile-edit')    
   },
   editPost:function (req, res) {
-    //verifico que llene todos los campos 
+    //verifico que  
     if (req.body.password.length < 4) {
       res.render('noregister', {msg: 'Password too short'})  
     }
@@ -130,8 +130,8 @@ const controlador = {
         email: req.body.email
       }
     })
-    .then(function(user){
-      if(user.email == req.body.email && user.id != req.session.user.id){
+    .then(function(email){
+      if(email.email == req.body.email && email.id != req.session.user.id){
         res.render('noregister', {msg: 'Este email ya esta registrado'})
       } else{
         if(req.body.username) req.body.nombre_usuario = req.body.username;
@@ -139,7 +139,7 @@ const controlador = {
         if (req.body.password) req.body.contrasenia = hasher.hashSync(req.body.password, 10);
         if (req.body.birthdate) req.body.birthdate = req.body.birthdate;
         if(req.file) req.body.photo = '/images/users/'+req.file.filename,
-        //creamos el usuario , guardamos sus datos en la base
+        //actualizamos el usuario , guardamos sus datos en la base
         db.User.update(req.body,{where: {id: req.session.user.id}})     
         .then(function () {
           res.redirect('/');

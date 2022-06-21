@@ -5,27 +5,21 @@
 	<%} %>
 <!-- product detail -->
 <div class="container products-wrapper">
-	<div class="d-flex align-items-center">
-		<h2 class="main-title"><%= data.title %></h2>
-		<p class="product-detail-description">
-			<% if (user) {%>
-				
-					<form  action="/product/<%= data.id %>/edit" method="get">
-						<input class="action-button" type="submit" value="Edit" >	
-						</form>	
-				
-				
-				<form  action="/product/<%= data.id %>/delete" method="post">
-					<input class="action-button" type="submit" value="Borrar" >	
-					</form>	
-					
-				
-			<% } %> 
-		</p>
+	<div class="show-products">
+		<% if (user) {%>	
+			<form  class="edit-delete"action="/product/<%= data.id %>/edit" method="get">
+				<input class="action-button" type="submit" value="Edit" >	
+			</form>	
+			<form class="edit-delete" action="/product/<%= data.id %>/delete" method="post">
+				<input class="action-button" type="submit" value="Borrar" >	
+			</form>	
+	<% } %> 
 	</div>
+			
 	<div class="product-detail">
 		<div class="row">
 			<article class="col-12 col-lg-8 product-detail-info">
+				<h2 class="main-title"><%= data.title %></h2>
 				<img src="<%= data.photo %>" alt="" class="product-detail-img">
 				<p class="product-detail-description">Descripcion: <%= data.description%></p>
 			</article>
