@@ -21,7 +21,8 @@
 					<article class="product-box_data">
 						<h2><%=products[i].title %></h2>
 						<p><%=products[i].description %></p>
-						<p>Comentarios: 12</p>
+						<p>Comentarios: <%= products[i].comentario.length %> </p>
+						<p><strong> <a href="/users/profile/<%= products[i].usuario.id %>"><%= products[i].usuario.nombre_usuario %> </a> </strong></p>
 					</article>
 				</a>
 			</section>

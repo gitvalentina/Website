@@ -23,7 +23,8 @@ const controlador = {
               description: {[op.like]: '%' + req.query.search + '%' }
             }
           ]
-        }
+        },
+        include:{all:true, nested:false}
       })
       .then(function (products) {
         if (products.length == 0) {
