@@ -4,7 +4,7 @@ const op = db.Sequelize.Op;
 const controlador = {
   index: function (req, res, next) {
     db.Product.findAll({
-      include: [{all: true, nested: false} ]
+      include: [{all: true, nested: false} ], order: [[ 'createdAt', 'DESC']]
   })
       .then(function (products) {
         res.render('index', {products});
