@@ -19,7 +19,7 @@
 	<div class="product-detail">
 		<div class="row">
 			<article class="col-12 col-lg-8 product-detail-info">
-				<h2 class="main-title"><%= data.title %></h2>
+				<h2 class="main-title"><%= data.title %> - By <a href="/users/profile/<%= data.usuario.id %>" class="name"><%= data.usuario.nombre_usuario %></a> </h2>
 				<img src="<%= data.photo %>" alt="" class="product-detail-img">
 				<p class="product-detail-description">Descripcion: <%= data.description%></p>
 			</article>
@@ -30,7 +30,7 @@
 						<img src="<%= data.comentario[i].usuario.photo %>" alt="">
 						<div class="data">
 							<p class="user">
-							<strong> <a href="/users/profile/<%= data.comentario[i].usuario.id %>"><%= data.comentario[i].usuario.nombre_usuario %> </a> </strong>
+							<strong> <a href="/users/profile/<%= data.comentario[i].usuario.id %>"><%= data.comentario[i].usuario.nombre_usuario %>: </a> </strong>
 									<%= data.comentario[i].content%></p>
 						</div>
 					</article>

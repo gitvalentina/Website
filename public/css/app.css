@@ -411,8 +411,8 @@ hr {
   cursor: pointer;
 }
 
-.action-button.delete {
-  background-color: rgb(248, 69, 37);
+.name {
+  text-decoration:underline;
 }
 .comments {
   padding: 30px 15px 15px 0;
