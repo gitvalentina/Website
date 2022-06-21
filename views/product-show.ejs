@@ -37,12 +37,18 @@
 				<% }%>
 				</section>
 				<form class="form" action="/product/<%= data.id %>/comment " method="post">
-						<%if(user) {%>
+						<%if(user && user.id == data.usuario.id) {%>
 							<input type="hidden" name="userid" value="<%= user.id %>">
 							<input class="form-input" name="comentario" type="text" placeholder="Agregar comentario">
 							<br>
 							<button type="submit" class="buy-now-button">Agregar Comentario</button>
-						<%  }%>
+						<%  } else { %>
+							<form class="form" action="/users/login " method="get">
+								<input class="form-input" name="comentario" type="text" placeholder="Agregar comentario">
+							<br>
+							<button type="submit" class="buy-now-button">Agregar Comentario</button>
+						</form>
+						<% } %>
 						
 				</form>
 				<hr>

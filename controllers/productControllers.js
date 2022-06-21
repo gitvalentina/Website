@@ -47,7 +47,7 @@ const controlador = {
 
     comment: function (req, res) {
         if (!req.session.user) {
-            throw Error('Not authorized')
+            res.redirect('/users/login')
         }
         // 
         req.body.user_id = req.session.user.id;
