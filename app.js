@@ -29,10 +29,10 @@ app.use(session( {
 //le pasa a todas las vistas una variable
 app.use(function(req, res, next){
   console.log(req.cookies);
-  if(!req.session.user){
-    db.User.findByPk(req.cookies.user_id)
+  if(!req.session.user){ // si existe la cookie pero por alguna razon la sesion se borro
+    db.User.findByPk(req.cookies.user_id) // buscame un usuario que tenga el id que guarde en la cookie
     .then(function(user){
-      req.session.user = user;
+      req.session.user = user; // volve a crear la sesion
       next();
     })
   } else{

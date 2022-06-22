@@ -1,15 +1,17 @@
 <% if (user) { %>
-	<%- include('./partials/header_logueado') %>
-	<% } else{ %>
-	<%- include('./partials/header') %>
-	<%} %>
+<%- include('./partials/header_logueado') %>
+<% } else{ %>
+<%- include('./partials/header') %>
+<%} %>
+
 <body>
     <div class="container products-wrapper">
         <div class="row">
             <div class="col-12">
                 <h2 class="products-title">Editar producto</h2>
             </div>
-            <form action="/product/<%=producto.id %>/edit" method="post" class="formularios"  enctype="multipart/form-data">
+            <form action="/product/<%=producto.id %>/edit" method="post" class="formularios"
+                enctype="multipart/form-data">
                 <div>
                     <label class="campos" for="">Nombre del producto</label>
                     <input type="text" name="nombre" id="nombre" value="<%= producto.title%>">

@@ -14,10 +14,10 @@ const controlador = {
   access: function (req, res, next) {
     //busco el usuario en base al email que me manda
     db.User.findOne({
-      where: {
-        email: req.body.email
-      }
-    })
+        where: {
+          email: req.body.email
+        }
+      })
       .then(function (user) {
         if (!user) throw Error('User not found')
         //comparo la password que me manda con la de la base de datos
@@ -30,7 +30,9 @@ const controlador = {
           }
           res.redirect('/');
         } else {
-          res.render('noregister', { msg: 'Invalid credentials.' })
+          res.render('noregister', {
+            msg: 'Invalid credentials.'
+          })
         }
       })
       .catch(function (err) {
@@ -46,30 +48,36 @@ const controlador = {
   store: function (req, res) {
     //verifico que llene todos los campos 
     if (!req.body.email || !req.body.username || !req.body.password || !req.body.birthdate || !req.file) {
-      res.render('noregister', { msg: 'No puede haber campos vacios' })
+      res.render('noregister', {
+        msg: 'No puede haber campos vacios'
+      })
     }
     if (req.body.password.length < 4) {
-      res.render('noregister', { msg: 'Password too short' })
+      res.render('noregister', {
+        msg: 'Password too short'
+      })
     }
     // verifico que el email no este repetido
     db.User.findOne({
-      where: {
-        email: req.body.email
-      }
-    })
+        where: {
+          email: req.body.email
+        }
+      })
       .then(function (user) {
         if (user) {
-          res.render('noregister', { msg: 'Este email ya esta registrado' })
+          res.render('noregister', {
+            msg: 'Este email ya esta registrado'
+          })
         } else {
           //creamos el usuario , guardamos sus datos en la base
           db.User.create({
-            nombre_usuario: req.body.username,
-            contrasenia: hasher.hashSync(req.body.password, 10),
-            email: req.body.email,
-            birthdate: req.body.birthdate,
-            photo: '/images/users/' + req.file.filename,
-            createdAt: Date.now()
-          })
+              nombre_usuario: req.body.username,
+              contrasenia: hasher.hashSync(req.body.password, 10),
+              email: req.body.email,
+              birthdate: req.body.birthdate,
+              photo: '/images/users/' + req.file.filename,
+              createdAt: Date.now()
+            })
             .then(function () {
               res.redirect('/');
             })
@@ -84,11 +92,16 @@ const controlador = {
 
   myProfile: function (req, res) {
     db.User.findByPk(req.session.user.id, {
-      include: [{ all: true, nested: true }]
-    })
+        include: [{
+          all: true,
+          nested: true
+        }]
+      })
       .then(data => {
-
-        res.render('profile', { data });
+        //res.send(data)
+        res.render('profile', {
+          data
+        });
       })
       .catch(function (error) {
         res.send(error)
@@ -96,11 +109,16 @@ const controlador = {
   },
   profile: function (req, res) {
     if (req.session.user) {
-      if (req.session.user.id == req.params.id) { res.redirect('/users/myProfile') }
+      if (req.session.user.id == req.params.id) {
+        res.redirect('/users/myProfile')
+      }
     }
     db.User.findByPk(req.params.id, {
-      include: [{ all: true, nested: true }]
-    })
+        include: [{
+          all: true,
+          nested: true
+        }]
+      })
       .then(function (data) {
 
         res.render('profile', {
@@ -118,33 +136,39 @@ const controlador = {
   editPost: function (req, res) {
     // verifico que el email no este repetido
     db.User.findOne({
-      where: {
-        email: req.body.email
-      }
-    })
+        where: {
+          email: req.body.email
+        }
+      })
       .then(function (email) {
         if (email && email.id != req.session.user.id) {
-          res.render('noregister', { msg: 'Este email ya esta registrado' })
+          res.render('noregister', {
+            msg: 'Este email ya esta registrado'
+          })
         } else {
-            if (req.body.password) {
-              req.body.contrasenia = hasher.hashSync(req.body.password, 10)
-            } else {
-              req.body.contrasenia = undefined;
-              if (req.body.username) req.body.nombre_usuario = req.body.username;
-              if (req.body.email) req.body.email = req.body.email;
-              if (req.body.birthdate) req.body.birthdate = req.body.birthdate;
-              if (req.file) req.body.photo = '/images/users/' + req.file.filename;
-              req.body.updatedAt = Date.now();
-              //actualizamos el usuario , guardamos sus datos en la base
-              db.User.update(req.body, { where: { id: req.session.user.id } })
-                .then(function () {
-                  res.redirect('/');
-                })
-                .catch(function (error) {
-                  res.send(error);
-                })
-            }
-          }  
+          if (req.body.password) {
+            req.body.contrasenia = hasher.hashSync(req.body.password, 10)
+          } else {
+            req.body.contrasenia = undefined;
+            if (req.body.username) req.body.nombre_usuario = req.body.username;
+            if (req.body.email) req.body.email = req.body.email;
+            if (req.body.birthdate) req.body.birthdate = req.body.birthdate;
+            if (req.file) req.body.photo = '/images/users/' + req.file.filename;
+            req.body.updatedAt = Date.now();
+            //actualizamos el usuario , guardamos sus datos en la base
+            db.User.update(req.body, {
+                where: {
+                  id: req.session.user.id
+                }
+              })
+              .then(function () {
+                res.redirect('/');
+              })
+              .catch(function (error) {
+                res.send(error);
+              })
+          }
+        }
       })
   }
 }

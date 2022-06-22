@@ -1,8 +1,8 @@
 <% if (user) { %>
-	<%- include('./partials/header_logueado') %>
-	<% } else{ %>
-	<%- include('./partials/header') %>
-	<%} %>
+<%- include('./partials/header_logueado') %>
+<% } else{ %>
+<%- include('./partials/header') %>
+<%} %>
 
 <!-- Datos del usuario -->
 <section class="info-usuario container products-wrapper">
@@ -20,10 +20,10 @@
 					<%} %>
 				</h1>
 			</div>
-			<div> 
+			<div>
 				<ul class="">
 					<li><%= data.email %></li>
-					<li> <%= data.producto.length%> productos</li> 
+					<li> <%= data.producto.length%> productos</li>
 					<li><%= data.comentario.length %> comentarios </li>
 				</ul>
 			</div>
@@ -40,8 +40,8 @@
 		</div>
 		<!-- Show mis productos -->
 		<% if (data.producto.length == 0) {%>
-			<h2 class="main-title">Todavia no tienes productos.</h2>
-			<% }else { %>
+		<h2 class="main-title">Todavia no tienes productos.</h2>
+		<% }else { %>
 		<% for (let i= 0; i < data.producto.length; i++) { %>
 		<div class="col-12 col-sm-6 col-lg-3">
 			<section class="product-box">
@@ -54,7 +54,7 @@
 						<p><%= data.producto[i].description %></p>
 						<p><%= data.producto[i].comentario.length %></p>
 					</article>
-				</a> 
+				</a>
 			</section>
 		</div>
 		<% }} %>

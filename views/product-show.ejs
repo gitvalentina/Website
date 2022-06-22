@@ -1,60 +1,63 @@
 <% if (user) { %>
-	<%- include('./partials/header_logueado') %>
-	<% } else{ %>
-	<%- include('./partials/header') %>
-	<%} %>
+<%- include('./partials/header_logueado') %>
+<% } else{ %>
+<%- include('./partials/header') %>
+<%} %>
 <!-- product detail -->
 <div class="container products-wrapper">
 	<div class="show-products">
-		<% if (user && user.id == data.usuario.id) {%>	
-			<form  class="edit-delete"action="/product/<%= data.id %>/edit" method="get">
-				<input class="action-button" type="submit" value="Edit" >	
-			</form>	
-			<form class="edit-delete" action="/product/<%= data.id %>/delete" method="post">
-				<input class="action-button" type="submit" value="Borrar" >	
-			</form>	
-	<% } %> 
+		<% if (user && user.id == data.usuario.id) {%>
+		<form class="edit-delete" action="/product/<%= data.id %>/edit" method="get">
+			<input class="action-button" type="submit" value="Edit">
+		</form>
+		<form class="edit-delete" action="/product/<%= data.id %>/delete" method="post">
+			<input class="action-button" type="submit" value="Borrar">
+		</form>
+		<% } %>
 	</div>
-			
+
 	<div class="product-detail">
 		<div class="row">
 			<article class="col-12 col-lg-8 product-detail-info">
-				<h2 class="main-title"><%= data.title %> - By <a href="/users/profile/<%= data.usuario.id %>" class="name"><%= data.usuario.nombre_usuario %></a> </h2>
+				<h2 class="main-title"><%= data.title %> - By <a href="/users/profile/<%= data.usuario.id %>"
+						class="name"><%= data.usuario.nombre_usuario %></a> </h2>
 				<img src="<%= data.photo %>" alt="" class="product-detail-img">
 				<p class="product-detail-description"> <%= data.description%></p>
 			</article>
 			<div class="col-12 col-lg-4">
 				<section class="comments">
-				<% for (let i = 0; i < data.comentario.length; i++) { %>
+					<% for (let i = 0; i < data.comentario.length; i++) { %>
 					<article>
 						<img src="<%= data.comentario[i].usuario.photo %>" alt="">
 						<div class="data">
 							<p class="user">
-							<strong> <a href="/users/profile/<%= data.comentario[i].usuario.id %>"><%= data.comentario[i].usuario.nombre_usuario %>: </a> </strong>
-									<%= data.comentario[i].content%></p>
+								<strong> <a
+										href="/users/profile/<%= data.comentario[i].usuario.id %>"><%= data.comentario[i].usuario.nombre_usuario %>:
+									</a> </strong>
+								<%= data.comentario[i].content%></p>
 						</div>
 					</article>
-				<% }%>
+					<% }%>
 				</section>
 				<form class="form" action="/product/<%= data.id %>/comment " method="post">
-						<%if(user && user.id == data.usuario.id) {%>
-							<input type="hidden" name="userid" value="<%= user.id %>">
-							<input class="form-input" name="comentario" type="text" placeholder="Agregar comentario">
-							<br>
-							<button type="submit" class="buy-now-button">Agregar Comentario</button>
-						<%  } else { %>
-							<form class="form" action="/users/login " method="get">
-								<input class="form-input" name="comentario" type="text" placeholder="Agregar comentario">
-							<br>
-							<button type="submit" class="buy-now-button">Agregar Comentario</button>
-						</form>
-						<% } %>
-						
+					<%if(user && user.id == data.usuario.id) {%>
+					<input type="hidden" name="userid" value="<%= user.id %>">
+					<input class="form-input" name="comentario" type="text" placeholder="Agregar comentario">
+					<br>
+					<button type="submit" class="buy-now-button">Agregar Comentario</button>
+					<%  } else { %>
+					<form class="form" action="/users/login " method="get">
+						<input class="form-input" name="comentario" type="text" placeholder="Agregar comentario">
+						<br>
+						<button type="submit" class="buy-now-button">Agregar Comentario</button>
+					</form>
+					<% } %>
+
 				</form>
 				<hr>
 			</div>
 		</div>
 	</div>
-		<!-- /product detail -->
+	<!-- /product detail -->
 
 	<%- include('./partials/footer.ejs')%>;
