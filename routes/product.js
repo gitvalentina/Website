@@ -24,7 +24,7 @@ router.post('/add', upload.single('photo'), controlador.store);
 router.get('/:id', controlador.show);
 
 router.get('/:id/edit', controlador.edit);
-router.post('/:id/edit', controlador.update)
+router.post('/:id/edit',upload.single('photo'), controlador.update)
 
 router.post('/:id/delete', controlador.delete);
 

@@ -74,7 +74,7 @@ const controlador = {
                 product_id: req.params.id,
                 user_id: req.body.userid
             }).then(function (comentario) {
-                res.redirect(`/product/${req.params.id}`, comentario);
+                res.redirect(`/product/${req.params.id}`);
             })
             .catch(function (error) {
                 res.send(error);
