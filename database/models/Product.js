@@ -29,14 +29,17 @@ module.exports = function (sequelize, DataTypes) {
         timestamps: false,
     }
     const Product = sequelize.define('Product', cols, config);
-    Product.associate = (model) => {
-        Product.hasMany(model.Coment, {
-            as: "comentario",
-            foreignKey: "product_id"
+    //ASOCIACIONES: Se hacen en los modelos, para optimizar la obtención de datos (a partir de FK)
+    
+    Product.associate = (model) => { //hacemos una funcion y declaramoslas associations
+        Product.hasMany(model.Coment, { //1er parametro el modelo con el q se relaciona,
+            as: "comentario",           // el alias refiere al nombre de la asociacion
+            foreignKey: "product_id"    // luego el objeto con el alias y la FK de la tabla comentarios en dde se encuentra la asociacion
+                                        // que comentario pertenece a cada producto? lo dice la fk    
         })
         Product.belongsTo(model.User, {
             as: "usuario",
-            foreignKey: "user_id"
+            foreignKey: "user_id"      //que poducto le pertenece a cada usuario? lo dice la fk
         })
     }
 

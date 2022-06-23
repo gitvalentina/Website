@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-    const cols = {
+    const cols = { //variable que guarda el objeto con todas las columnas y que se define con un alias, para usarla en los controladores 
         id: {
-            autoIncremet: true,
+            autoIncremet: true, 
             primaryKey: true,
             type: DataTypes.INTEGER
         },
@@ -22,11 +22,11 @@ module.exports = function (sequelize, DataTypes) {
         }
     }
     const config = {
-        tableName: 'comentarios',
+        tableName: 'comentarios', //nombre de la tabla, para evitar la preconfig de sequeliz que supone que va en plural
         timestamps: false
 
     }
-    const comentario = sequelize.define('Coment', cols, config);
+    const comentario = sequelize.define('Coment', cols, config); //almacenamos el metodo define en una variable que luego retornamos, tiene el alias, la definicion de las columnas y las configuraciones especiales como timestapms false para los campos que no la tienen
     comentario.associate = function (models) {
         comentario.belongsTo(models.User, {
             as: "usuario",

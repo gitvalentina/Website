@@ -1,4 +1,4 @@
-var db = require('../database/models');
+var db = require('../database/models'); 
 const controlador = {
     product: function (req, res) {
         res.render('index')
@@ -7,8 +7,8 @@ const controlador = {
         res.render('product-add');
     },
     show: function (req, res) {
-        db.Product.findByPk(req.params.id, {
-                order: [
+        db.Product.findByPk(req.params.id, { //busca un registro que coincida con la clave primaria, que definimos en el parametro. En este caso req.params.id
+                order: [                        // es equivalente al select from...where, de sql
                     ['comentario', 'createdAt', 'DESC']
                 ],
                 include: [{
@@ -24,7 +24,6 @@ const controlador = {
                 res.render('product-show', {
                     data
                 });
-                //res.send(data)
             })
             .catch(function (error) {
                 res.send(error);
@@ -41,8 +40,6 @@ const controlador = {
                 msg: 'No puede haber campos vacios'
             })
         } else {
-            //guardamos en req.body.photo la ruta a la foto que el usuario se puso
-            //req.body.photo = (req.file.path).replace('public', '');
             //creamos el producto , guardamos sus datos en la base
             db.Product.create({
                     user_id: req.session.user.id,

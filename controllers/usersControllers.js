@@ -12,14 +12,14 @@ const controlador = {
   },
   //para procesar info del log in, usamos metodo post
   access: function (req, res, next) {
-    //busco el usuario en base al email que me manda
+    //busco dentro de los usuario si coincide el email que me manda el q se esta logueando con algun email que ya tengo en la base de datos con el criterio del where
     db.User.findOne({
-        where: {
+        where: { //busca registros que cumplan esta condicion, filtra por igualdad
           email: req.body.email
         }
       })
       .then(function (user) {
-        if (!user) throw Error('User not found')
+        if (!user) throw Error('User not found') // si no hay nada igual, hago la promesa
         //comparo la password que me manda con la de la base de datos
         if (hasher.compareSync(req.body.contra, user.contrasenia)) {
           req.session.user = user;
