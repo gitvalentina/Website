@@ -19,13 +19,13 @@ const controlador = {
         }
       })
       .then(function (user) {
-        if (!user) throw Error('User not found') // si no hay nada igual, hago la promesa
+        if (!user) throw Error('User not found') // validacion: si no encuentra en la columna email, el mail que manda el cliente 
         //comparo la password que me manda con la de la base de datos
         if (hasher.compareSync(req.body.contra, user.contrasenia)) {
-          req.session.user = user;
-          if (req.body.rememberme) {
-            res.cookie('user_id', user.id, {
-              maxAge: 1000 * 60 * 60 * 7
+          req.session.user = user; //Ahora q se creo la sesion, debemos usarla, como se que estoy logueado? me cambia el header, puedo agregar productos, editar mi perfil, etc. app.js
+          if (req.body.rememberme) { //preguntamos si toco el checkbox
+            res.cookie('user_id', user.id, { //que cree la cookie: le indicamos el nombre, la info que guarda, que no puede ser sensible 
+              maxAge: 1000 * 60 * 60 * 7    //y el objeto con su tiempo de vida
             })
           }
           res.redirect('/');
